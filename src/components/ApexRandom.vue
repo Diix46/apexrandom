@@ -1,18 +1,22 @@
 <template>
   <div>
     <h1>Selection du personnage :</h1>
-    <ul v-for="char in characters" :key="char.name">
-      <img
-        @click="onImgClick(char)"
-        :src="`./img/${char.img}`"
-        class="image"
-        height="100px"
-        width="100px"
-      />
-      <li class="card">{{ char.Name }} {{ char.isPosseded }}</li>
-    </ul>
+    <div class="container">
+      <ul v-for="char in characters" :key="char.name">
+        <img
+          @click="onImgClick(char)"
+          :src="`./img/${char.img}`"
+          class="image"
+          height="100px"
+          width="100px"
+        />
+        <li class="card">{{ char.Name }}</li>
+      </ul>
+    </div>
 
-    <div v-if="activated" class="btn btn-danger" @click="onRandomClick()">Random</div>
+    <div v-if="activated" class="btn btn-danger" @click="onRandomClick()">
+      Random
+    </div>
 
     <!-- Affichage des selections -->
     <ul v-for="char in selectedChar" :key="char.name">
@@ -170,33 +174,33 @@ export default {
   },
 
   methods: {
-    onRandomClick: function() {
+    onRandomClick: function () {
       this.selectWeapon();
       this.selectChar();
       this.abilitiesAllowed();
     },
 
-    onImgClick: function(char){
-      char.isPosseded = !char.isPosseded
-      this.activated = this.disabledButton()
+    onImgClick: function (char) {
+      char.isPosseded = !char.isPosseded;
+      this.activated = this.disabledButton();
     },
 
-    disabledButton: function(){
+    disabledButton: function () {
       let compteur = 0;
-      for(let i = 0; i <this.characters.length; i++){
-        if(this.characters[i].isPosseded){
+      for (let i = 0; i < this.characters.length; i++) {
+        if (this.characters[i].isPosseded) {
           compteur++;
         }
-        }
-        if(compteur == 0){
-          return false
-        } else {
-          return true
-        }
+      }
+      if (compteur == 0) {
+        return false;
+      } else {
+        return true;
+      }
     },
 
     selectWeapon: function () {
-      this.selectedWeapons = []; 
+      this.selectedWeapons = [];
       for (let i = 0; i < this.weapons.length; i++) {
         const obj = Object.assign({}, this.weapons[i]);
         this.selectedWeapons.push(obj);
@@ -207,25 +211,28 @@ export default {
       while (numberOfWeaponSelected < 2) {
         const rand = Math.floor(Math.random() * this.selectedWeapons.length);
         this.selectedWeapons[rand].selected = true;
-        numberOfWeaponSelected = this.selectedWeapons.filter((elem) => elem.selected)
-          .length;
+        numberOfWeaponSelected = this.selectedWeapons.filter(
+          (elem) => elem.selected
+        ).length;
       }
     },
 
     selectChar: function () {
       this.selectedChar = [];
       for (let i = 0; i < this.characters.length; i++) {
-          const obj = Object.assign({}, this.characters[i]);
-          this.selectedChar.push(obj);
+        const obj = Object.assign({}, this.characters[i]);
+        this.selectedChar.push(obj);
       }
       if (this.selectedChar.length != 0) {
-        let numberOfCharSelected = this.selectedChar.filter((elem) => elem.selected)
-          .length;
+        let numberOfCharSelected = this.selectedChar.filter(
+          (elem) => elem.selected
+        ).length;
         while (numberOfCharSelected < 1) {
           const rand = Math.floor(Math.random() * this.selectedChar.length);
           this.selectedChar[rand].selected = true;
-          numberOfCharSelected = this.selectedChar.filter((elem) => elem.selected)
-            .length;
+          numberOfCharSelected = this.selectedChar.filter(
+            (elem) => elem.selected
+          ).length;
         }
       }
     },
