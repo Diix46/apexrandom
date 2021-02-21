@@ -2,16 +2,20 @@
   <div>
     <h1>Selection du personnage :</h1>
     <div class="container">
-      <ul v-for="char in characters" :key="char.name">
-        <img
-          @click="onImgClick(char)"
-          :src="`./img/${char.img}`"
-          class="image"
-          height="100px"
-          width="100px"
-        />
-        <li class="card">{{ char.Name }}</li>
-      </ul>
+      <div class="row">
+        <ul v-for="char in characters" :key="char.name">
+          <div class="col">
+            <img
+              @click="onImgClick(char)"
+              :src="`./img/${char.img}`"
+              :class="{ posseded: !char.isPosseded }"
+              height="100px"
+              width="100px"
+            />
+            <li class="card">{{ char.Name }}</li>
+          </div>
+        </ul>
+      </div>
     </div>
 
     <div v-if="activated" class="btn btn-danger" @click="onRandomClick()">
@@ -19,23 +23,34 @@
     </div>
 
     <!-- Affichage des selections -->
-    <ul v-for="char in characters" :key="char.name">
-      <li v-if="char.selected">
-        <div class="card">
-          {{ char.Name }}
-        </div>
-      </li>
-    </ul>
+    <div class="container">
+      <div v-if="selectedWeapons.length">
+        <div class="card" style="width: 20rem">
+          <ul v-for="char in selectedCharacters" :key="char.name">
+            <div class="col">
+              <img
+                :src="`./img/${char.img}`"
+                class="image"
+                height="100px"
+                width="100px"
+              />
+              {{ char.Name }}
+            </div>
+          </ul>
 
-    <ul v-for="weap in weapons" :key="weap.name">
-      <li v-if="weap.selected">
-        <div class="card">
-          {{ weap.Name }}
+          <ul v-for="weap in selectedWeapons" :key="weap.name">
+            {{
+              weap.Name
+            }}
+          </ul>
+          Utilisation de l'abilité :
+          {{ spell ? "Tu as le droit" : "Tu n'as pas le droit" }}
+          <br />
+          Utilisation de l'ultime :
+          {{ ultimate ? "Tu as le droit" : "Tu n'as pas le droit" }}
         </div>
-      </li>
-    </ul>
-
-    <div class="card">Q spell : {{ spell }}, Ultimate : {{ ultimate }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -171,17 +186,23 @@ export default {
       activated: true,
     };
   },
-  created: function () {
-    this.initData();
+  computed: {
+    selectedWeapons() {
+      return this.weapons.filter((w) => w.selected);
+    },
+    selectedCharacters() {
+      return this.characters.filter((w) => w.selected);
+    },
   },
+
   methods: {
     initData: function () {
-      for(let i = 0; i<this.characters.length; i++){
-        this.characters.selected = false;
+      for (let i = 0; i < this.characters.length; i++) {
+        this.characters[i].selected = false;
       }
-      for(let j = 0; j<this.weapons.length; j++){
-        this.weapons.selected = false;
-      }    
+      for (let j = 0; j < this.weapons.length; j++) {
+        this.weapons[j].selected = false;
+      }
     },
 
     onRandomClick: function () {
@@ -226,7 +247,7 @@ export default {
         .length;
       while (numberOfCharSelected < 1) {
         const rand = Math.floor(Math.random() * this.characters.length);
-        if(this.characters[rand].isPosseded){
+        if (this.characters[rand].isPosseded) {
           this.characters[rand].selected = true;
         }
         numberOfCharSelected = this.characters.filter((elem) => elem.selected)
@@ -254,4 +275,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.posseded {
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+}
 </style>

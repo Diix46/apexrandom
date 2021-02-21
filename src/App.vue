@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img alt="Vue logo" style="width:20%" src="./assets/logo.png">
     <ApexRandom msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
