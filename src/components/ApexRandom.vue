@@ -175,10 +175,10 @@ export default {
   methods: {
     initData: function () {
       for(let i = 0; i<this.characters.length; i++){
-        this.characters.selected = false;
+        this.characters[i].selected = false;
       }
       for(let j = 0; j<this.weapons.length; j++){
-        this.weapons.selected = false;
+        this.weapons[j].selected = false;
       }    
     },
 
