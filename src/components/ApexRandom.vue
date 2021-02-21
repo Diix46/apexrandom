@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1>Selection du personnage :</h1>
+    <h1>Selectionner les personnages possédés :</h1>
     <div class="container">
       <div class="row">
         <ul v-for="char in characters" :key="char.name">
           <div class="col">
+            <li class="card">
             <img
               @click="onImgClick(char)"
               :src="`./img/${char.img}`"
@@ -12,7 +13,8 @@
               height="100px"
               width="100px"
             />
-            <li class="card">{{ char.Name }}</li>
+              {{ char.Name }}
+              </li>
           </div>
         </ul>
       </div>
@@ -28,13 +30,13 @@
         <div class="card" style="width: 20rem">
           <ul v-for="char in selectedCharacters" :key="char.name">
             <div class="col">
+              {{ char.Name }}
               <img
                 :src="`./img/${char.img}`"
                 class="image"
                 height="100px"
                 width="100px"
               />
-              {{ char.Name }}
             </div>
           </ul>
 
