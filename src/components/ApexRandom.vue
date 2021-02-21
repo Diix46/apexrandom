@@ -42,43 +42,7 @@ export default {
   name: "ApexRandom",
   data() {
     return {
-      characters: [],
-      weapons: [],
-      spell: true,
-      ultimate: true,
-      activated: true,
-    };
-  },
-  created: function () {
-    this.initData();
-  },
-  methods: {
-    initData: function () {
-      this.weapons = [
-        { Name: "Havoc", selected: false },
-        { Name: "Flatline", selected: false },
-        { Name: "G7 Scout", selected: false },
-        { Name: "Hemlock", selected: false },
-        { Name: "R-301", selected: false },
-        { Name: "30-30 Repeater", selected: false },
-        { Name: "Alternator", selected: false },
-        { Name: "R-99", selected: false },
-        { Name: "Volt", selected: false },
-        { Name: "Devotion", selected: false },
-        { Name: "Sptifire", selected: false },
-        { Name: "L-STAR", selected: false },
-        { Name: "Charge Rifle", selected: false },
-        { Name: "Longbow", selected: false },
-        { Name: "Sentinel", selected: false },
-        { Name: "TripleTake", selected: false },
-        { Name: "EVA-8", selected: false },
-        { Name: "Mastiff", selected: false },
-        { Name: "Mozambique", selected: false },
-        { Name: "RE-45", selected: false },
-        { Name: "P2020", selected: false },
-        { Name: "Wingman", selected: false },
-      ];
-      this.characters = [
+      characters: [
         {
           Name: "Bangalore",
           img: "bangalore.png",
@@ -175,7 +139,47 @@ export default {
           isPosseded: true,
           selected: false,
         },
-      ];
+      ],
+      weapons: [
+        { Name: "Havoc", selected: false },
+        { Name: "Flatline", selected: false },
+        { Name: "G7 Scout", selected: false },
+        { Name: "Hemlock", selected: false },
+        { Name: "R-301", selected: false },
+        { Name: "30-30 Repeater", selected: false },
+        { Name: "Alternator", selected: false },
+        { Name: "R-99", selected: false },
+        { Name: "Volt", selected: false },
+        { Name: "Devotion", selected: false },
+        { Name: "Sptifire", selected: false },
+        { Name: "L-STAR", selected: false },
+        { Name: "Charge Rifle", selected: false },
+        { Name: "Longbow", selected: false },
+        { Name: "Sentinel", selected: false },
+        { Name: "TripleTake", selected: false },
+        { Name: "EVA-8", selected: false },
+        { Name: "Mastiff", selected: false },
+        { Name: "Mozambique", selected: false },
+        { Name: "RE-45", selected: false },
+        { Name: "P2020", selected: false },
+        { Name: "Wingman", selected: false },
+      ],
+      spell: true,
+      ultimate: true,
+      activated: true,
+    };
+  },
+  created: function () {
+    this.initData();
+  },
+  methods: {
+    initData: function () {
+      for(let i = 0; i<this.characters.length; i++){
+        this.characters.selected = false;
+      }
+      for(let j = 0; j<this.weapons.length; j++){
+        this.weapons.selected = false;
+      }    
     },
 
     onRandomClick: function () {
@@ -220,7 +224,9 @@ export default {
         .length;
       while (numberOfCharSelected < 1) {
         const rand = Math.floor(Math.random() * this.characters.length);
-        this.characters[rand].selected = true;
+        if(this.characters[rand].isPosseded){
+          this.characters[rand].selected = true;
+        }
         numberOfCharSelected = this.characters.filter((elem) => elem.selected)
           .length;
       }
