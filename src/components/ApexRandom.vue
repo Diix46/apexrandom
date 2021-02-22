@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div v-if="activated" class="btn btn-danger" @click="onRandomClick()">
+    <div v-if="activated" class="btn btn-danger mb-4" @click="onRandomClick()">
       Random
     </div>
 
