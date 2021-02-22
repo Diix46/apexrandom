@@ -6,15 +6,15 @@
         <ul v-for="char in characters" :key="char.name">
           <div class="col">
             <li class="card">
-            <img
-              @click="onImgClick(char)"
-              :src="`./img/${char.img}`"
-              :class="{ posseded: !char.isPosseded }"
-              height="100px"
-              width="100px"
-            />
+              <img
+                @click="onImgClick(char)"
+                :src="`./img/${char.img}`"
+                :class="{ posseded: !char.isPosseded }"
+                height="100px"
+                width="100px"
+              />
               {{ char.Name }}
-              </li>
+            </li>
           </div>
         </ul>
       </div>
@@ -24,9 +24,13 @@
       Random
     </div>
 
+    <div onload="drawSpawn()" class="map">
+      <canvas></canvas>
+    </div>
+
     <!-- Affichage des selections -->
     <div class="container">
-      <div v-if="selectedWeapons.length">
+      <div v-if="selectedWeapons.length || selectedWeaponsGenerals.length">
         <div class="card" style="width: 20rem">
           <ul v-for="char in selectedCharacters" :key="char.name">
             <div class="col">
@@ -41,8 +45,15 @@
           </ul>
 
           <ul v-for="weap in selectedWeapons" :key="weap.name">
+            Arme :
             {{
               weap.Name
+            }}
+          </ul>
+          <ul v-for="weapG in selectedWeaponsGenerals" :key="weapG.name">
+            Arme :
+            {{
+              weapG.Name
             }}
           </ul>
           Utilisation de l'abilité :
@@ -183,6 +194,17 @@ export default {
         { Name: "P2020", selected: false },
         { Name: "Wingman", selected: false },
       ],
+      weaponsGenerals: [
+        { Name: "N'importe quel sniper", selected: false },
+        { Name: "N'importe quel pompes ou armes legère", selected: false },
+        { Name: "6 Arce Star dans l'inventaire", selected: false },
+        { Name: "N'importe quel pistolet", selected: false },
+        { Name: "N'importe quel arme lourde", selected: false },
+        {
+          Name: "Pas le droit de swap sur les cadavres (armes)",
+          selected: false,
+        },
+      ],
       spell: true,
       ultimate: true,
       activated: true,
@@ -191,6 +213,9 @@ export default {
   computed: {
     selectedWeapons() {
       return this.weapons.filter((w) => w.selected);
+    },
+    selectedWeaponsGenerals() {
+      return this.weaponsGenerals.filter((w) => w.selected);
     },
     selectedCharacters() {
       return this.characters.filter((w) => w.selected);
@@ -204,6 +229,9 @@ export default {
       }
       for (let j = 0; j < this.weapons.length; j++) {
         this.weapons[j].selected = false;
+      }
+      for (let k = 0; k < this.weaponsGenerals.length; k++) {
+        this.weaponsGenerals[k].selected = false;
       }
     },
 
@@ -234,13 +262,23 @@ export default {
     },
 
     selectWeapon: function () {
-      let numberOfWeaponSelected = this.weapons.filter((elem) => elem.selected)
-        .length;
+      let numberOfWeaponSelected =
+        this.weapons.filter((elem) => elem.selected).length +
+        this.weaponsGenerals.filter((elem) => elem.selected).length;
       while (numberOfWeaponSelected < 2) {
-        const rand = Math.floor(Math.random() * this.weapons.length);
-        this.weapons[rand].selected = true;
-        numberOfWeaponSelected = this.weapons.filter((elem) => elem.selected)
-          .length;
+        const randGenerals = Math.floor(Math.random() * 100);
+        if (randGenerals > 40) {
+          const classWeapons = Math.floor(
+            Math.random() * this.weaponsGenerals.length
+          );
+          this.weaponsGenerals[classWeapons].selected = true;
+        } else {
+          const rand = Math.floor(Math.random() * this.weapons.length);
+          this.weapons[rand].selected = true;
+        }
+        numberOfWeaponSelected =
+          this.weapons.filter((elem) => elem.selected).length +
+          this.weaponsGenerals.filter((elem) => elem.selected).length;
       }
     },
 
@@ -271,6 +309,17 @@ export default {
         this.ultimate = false;
       }
     },
+
+    drawSpawn: function () {
+      var canvas = document.getElementById("canvas");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+
+        ctx.fillRect(25, 25, 100, 100);
+        ctx.clearRect(45, 45, 60, 60);
+        ctx.strokeRect(50, 50, 50, 50);
+      }
+    },
   },
 };
 </script>
@@ -280,5 +329,13 @@ export default {
 .posseded {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
+}
+
+.map {
+  background: url(/img/map.jpg) no-repeat center;
+  background-size: contain;
+  width: 600px;
+  height: 600px;
+  border: 2px solid black;
 }
 </style>
