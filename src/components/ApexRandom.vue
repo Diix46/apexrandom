@@ -24,43 +24,47 @@
       Random
     </div>
 
-    <div onload="drawSpawn()" class="map">
-      <canvas></canvas>
-    </div>
-
     <!-- Affichage des selections -->
     <div class="container">
-      <div v-if="selectedWeapons.length || selectedWeaponsGenerals.length">
-        <div class="card" style="width: 20rem">
-          <ul v-for="char in selectedCharacters" :key="char.name">
-            <div class="col">
-              {{ char.Name }}
-              <img
-                :src="`./img/${char.img}`"
-                class="image"
-                height="100px"
-                width="100px"
-              />
-            </div>
-          </ul>
+      <div class="row">
+        <div class="col-sm-4">
+          <div v-if="selectedWeapons.length || selectedWeaponsGenerals.length">
+            <div class="card" style="width: 18rem">
+              <div
+                class="card-body"
+                v-for="char in selectedCharacters"
+                :key="char.name"
+              >
+                <img :src="`./img/${char.img}`" class="card-img-top" />
+                <h5 class="card-title">{{ char.Name }}</h5>
+              </div>
 
-          <ul v-for="weap in selectedWeapons" :key="weap.name">
-            Arme :
-            {{
-              weap.Name
-            }}
-          </ul>
-          <ul v-for="weapG in selectedWeaponsGenerals" :key="weapG.name">
-            Arme :
-            {{
-              weapG.Name
-            }}
-          </ul>
-          Utilisation de l'abilité :
-          {{ spell ? "Tu as le droit" : "Tu n'as pas le droit" }}
-          <br />
-          Utilisation de l'ultime :
-          {{ ultimate ? "Tu as le droit" : "Tu n'as pas le droit" }}
+              <ul v-for="weap in selectedWeapons" :key="weap.name">
+                <p class="card-text">Arme : {{ weap.Name }}</p>
+              </ul>
+              <ul v-for="weapG in selectedWeaponsGenerals" :key="weapG.name">
+                <p class="card-text">Arme : {{ weapG.Name }}</p>
+              </ul>
+              <p class="card-text">
+                Utilisation de l'abilité :
+                {{ spell ? "Tu as le droit" : "Tu n'as pas le droit" }}
+              </p>
+              <p class="card-text">
+                Utilisation de l'ultime :
+                {{ ultimate ? "Tu as le droit" : "Tu n'as pas le droit" }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card" style="width: 30rem">
+            <canvas
+              class="card-img-top"
+              id="canvas"
+              width="508"
+              height="505"
+            ></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -205,11 +209,61 @@ export default {
           selected: false,
         },
       ],
+      tabSpawn: [
+        { Name: "Escargot", posX: 0.46, posY: 0.45, longueur: 30, largeur: 30 },
+        {
+          Name: "Centre de traitement",
+          posX: 0.47,
+          posY: 0.88,
+          longueur: 85,
+          largeur: 40,
+        },
+        {
+          Name: "Base Aerienne",
+          posX: 0.07,
+          posY: 0.48,
+          longueur: 40,
+          largeur: 80,
+        },
+        { Name: "Repulseur", posX: 0.7, posY: 0.7, longueur: 80, largeur: 40 },
+        {
+          Name: "Ville Cimetiere",
+          posX: 0.23,
+          posY: 0.68,
+          longueur: 90,
+          largeur: 75,
+        },
+        { Name: "Bunker", posX: 0.3, posY: 0.4, longueur: 40, largeur: 80 },
+        { Name: "Marais", posX: 0.88, posY: 0.42, longueur: 50, largeur: 80 },
+        {
+          Name: "Artillerie",
+          posX: 0.47,
+          posY: 0.11,
+          longueur: 72,
+          largeur: 40,
+        },
+        {
+          Name: "Tour du Nord",
+          posX: 0.4,
+          posY: 0.22,
+          longueur: 70,
+          largeur: 30,
+        },
+        {
+          Name: "Lacs Toxiques",
+          posX: 0.08,
+          posY: 0.19,
+          longueur: 80,
+          largeur: 40,
+        },
+      ],
       spell: true,
       ultimate: true,
       activated: true,
+      resetC: true,
     };
   },
+
   computed: {
     selectedWeapons() {
       return this.weapons.filter((w) => w.selected);
@@ -240,6 +294,8 @@ export default {
       this.selectChar();
       this.selectWeapon();
       this.abilitiesAllowed();
+      this.drawSpawn(false);
+      this.drawSpawn(true);
     },
 
     onImgClick: function (char) {
@@ -310,14 +366,27 @@ export default {
       }
     },
 
-    drawSpawn: function () {
-      var canvas = document.getElementById("canvas");
-      if (canvas.getContext) {
-        var ctx = canvas.getContext("2d");
-
-        ctx.fillRect(25, 25, 100, 100);
-        ctx.clearRect(45, 45, 60, 60);
-        ctx.strokeRect(50, 50, 50, 50);
+    drawSpawn: function (toto) {
+      const canvas = document.getElementById("canvas");
+      const h = canvas.height;
+      const w = canvas.width;
+      const ctx = canvas.getContext("2d");
+      if (canvas.getContext && toto) {
+        const rand = Math.floor(Math.random() * this.tabSpawn.length);
+        ctx.strokeStyle = "red";
+        ctx.fillStyle = "red";
+        const x = this.tabSpawn[rand].posX * w + 0.5;
+        const y = this.tabSpawn[rand].posY * h + 0.5;
+        ctx.strokeRect(
+          x,
+          y,
+          this.tabSpawn[rand].longueur,
+          this.tabSpawn[rand].largeur
+        );
+        ctx.font = "2rem Helvetica";
+        ctx.fillText(this.tabSpawn[rand].Name, w * 0.05, h * 0.95);
+      } else if (!toto) {
+        ctx.clearRect(0, 0, w, h);
       }
     },
   },
@@ -331,11 +400,11 @@ export default {
   -webkit-filter: grayscale(1);
 }
 
-.map {
+canvas {
   background: url(/img/map.jpg) no-repeat center;
   background-size: contain;
-  width: 600px;
-  height: 600px;
+  /* width: 100%;
+  height: 100%; */
   border: 2px solid black;
 }
 </style>
