@@ -6,15 +6,15 @@
         <ul v-for="char in characters" :key="char.name">
           <div class="col">
             <li class="card">
-            <img
-              @click="onImgClick(char)"
-              :src="`./img/${char.img}`"
-              :class="{ posseded: !char.isPosseded }"
-              height="100px"
-              width="100px"
-            />
+              <img
+                @click="onImgClick(char)"
+                :src="`./img/${char.img}`"
+                :class="{ posseded: !char.isPosseded }"
+                height="100px"
+                width="100px"
+              />
               {{ char.Name }}
-              </li>
+            </li>
           </div>
         </ul>
       </div>
@@ -26,30 +26,45 @@
 
     <!-- Affichage des selections -->
     <div class="container">
-      <div v-if="selectedWeapons.length">
-        <div class="card" style="width: 20rem">
-          <ul v-for="char in selectedCharacters" :key="char.name">
-            <div class="col">
-              {{ char.Name }}
-              <img
-                :src="`./img/${char.img}`"
-                class="image"
-                height="100px"
-                width="100px"
-              />
-            </div>
-          </ul>
+      <div class="row">
+        <div class="col-sm-4">
+          <div v-if="selectedWeapons.length || selectedWeaponsGenerals.length">
+            <div class="card" style="width: 18rem">
+              <div
+                class="card-body"
+                v-for="char in selectedCharacters"
+                :key="char.name"
+              >
+                <img :src="`./img/${char.img}`" class="card-img-top" />
+                <h5 class="card-title">{{ char.Name }}</h5>
+              </div>
 
-          <ul v-for="weap in selectedWeapons" :key="weap.name">
-            {{
-              weap.Name
-            }}
-          </ul>
-          Utilisation de l'abilité :
-          {{ spell ? "Tu as le droit" : "Tu n'as pas le droit" }}
-          <br />
-          Utilisation de l'ultime :
-          {{ ultimate ? "Tu as le droit" : "Tu n'as pas le droit" }}
+              <ul v-for="weap in selectedWeapons" :key="weap.name">
+                <p class="card-text">Arme : {{ weap.Name }}</p>
+              </ul>
+              <ul v-for="weapG in selectedWeaponsGenerals" :key="weapG.name">
+                <p class="card-text">Arme : {{ weapG.Name }}</p>
+              </ul>
+              <p class="card-text">
+                Utilisation de l'abilité :
+                {{ spell ? "Tu as le droit" : "Tu n'as pas le droit" }}
+              </p>
+              <p class="card-text">
+                Utilisation de l'ultime :
+                {{ ultimate ? "Tu as le droit" : "Tu n'as pas le droit" }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card" style="width: 30rem">
+            <canvas
+              class="card-img-top"
+              id="canvas"
+              width="508"
+              height="505"
+            ></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -183,14 +198,78 @@ export default {
         { Name: "P2020", selected: false },
         { Name: "Wingman", selected: false },
       ],
+      weaponsGenerals: [
+        { Name: "N'importe quel sniper", selected: false },
+        { Name: "N'importe quel pompes ou armes legère", selected: false },
+        { Name: "6 Arce Star dans l'inventaire", selected: false },
+        { Name: "N'importe quel pistolet", selected: false },
+        { Name: "N'importe quel arme lourde", selected: false },
+        {
+          Name: "Pas le droit de swap sur les cadavres (armes)",
+          selected: false,
+        },
+      ],
+      tabSpawn: [
+        { Name: "Escargot", posX: 0.46, posY: 0.45, longueur: 30, largeur: 30 },
+        {
+          Name: "Centre de traitement",
+          posX: 0.47,
+          posY: 0.88,
+          longueur: 85,
+          largeur: 40,
+        },
+        {
+          Name: "Base Aerienne",
+          posX: 0.07,
+          posY: 0.48,
+          longueur: 40,
+          largeur: 80,
+        },
+        { Name: "Repulseur", posX: 0.7, posY: 0.7, longueur: 80, largeur: 40 },
+        {
+          Name: "Ville Cimetiere",
+          posX: 0.23,
+          posY: 0.68,
+          longueur: 90,
+          largeur: 75,
+        },
+        { Name: "Bunker", posX: 0.3, posY: 0.4, longueur: 40, largeur: 80 },
+        { Name: "Marais", posX: 0.88, posY: 0.42, longueur: 50, largeur: 80 },
+        {
+          Name: "Artillerie",
+          posX: 0.47,
+          posY: 0.11,
+          longueur: 72,
+          largeur: 40,
+        },
+        {
+          Name: "Tour du Nord",
+          posX: 0.4,
+          posY: 0.22,
+          longueur: 70,
+          largeur: 30,
+        },
+        {
+          Name: "Lacs Toxiques",
+          posX: 0.08,
+          posY: 0.19,
+          longueur: 80,
+          largeur: 40,
+        },
+      ],
       spell: true,
       ultimate: true,
       activated: true,
+      resetC: true,
     };
   },
+
   computed: {
     selectedWeapons() {
       return this.weapons.filter((w) => w.selected);
+    },
+    selectedWeaponsGenerals() {
+      return this.weaponsGenerals.filter((w) => w.selected);
     },
     selectedCharacters() {
       return this.characters.filter((w) => w.selected);
@@ -205,6 +284,9 @@ export default {
       for (let j = 0; j < this.weapons.length; j++) {
         this.weapons[j].selected = false;
       }
+      for (let k = 0; k < this.weaponsGenerals.length; k++) {
+        this.weaponsGenerals[k].selected = false;
+      }
     },
 
     onRandomClick: function () {
@@ -212,6 +294,8 @@ export default {
       this.selectChar();
       this.selectWeapon();
       this.abilitiesAllowed();
+      this.drawSpawn(false);
+      this.drawSpawn(true);
     },
 
     onImgClick: function (char) {
@@ -234,13 +318,23 @@ export default {
     },
 
     selectWeapon: function () {
-      let numberOfWeaponSelected = this.weapons.filter((elem) => elem.selected)
-        .length;
+      let numberOfWeaponSelected =
+        this.weapons.filter((elem) => elem.selected).length +
+        this.weaponsGenerals.filter((elem) => elem.selected).length;
       while (numberOfWeaponSelected < 2) {
-        const rand = Math.floor(Math.random() * this.weapons.length);
-        this.weapons[rand].selected = true;
-        numberOfWeaponSelected = this.weapons.filter((elem) => elem.selected)
-          .length;
+        const randGenerals = Math.floor(Math.random() * 100);
+        if (randGenerals > 40) {
+          const classWeapons = Math.floor(
+            Math.random() * this.weaponsGenerals.length
+          );
+          this.weaponsGenerals[classWeapons].selected = true;
+        } else {
+          const rand = Math.floor(Math.random() * this.weapons.length);
+          this.weapons[rand].selected = true;
+        }
+        numberOfWeaponSelected =
+          this.weapons.filter((elem) => elem.selected).length +
+          this.weaponsGenerals.filter((elem) => elem.selected).length;
       }
     },
 
@@ -271,6 +365,30 @@ export default {
         this.ultimate = false;
       }
     },
+
+    drawSpawn: function (toto) {
+      const canvas = document.getElementById("canvas");
+      const h = canvas.height;
+      const w = canvas.width;
+      const ctx = canvas.getContext("2d");
+      if (canvas.getContext && toto) {
+        const rand = Math.floor(Math.random() * this.tabSpawn.length);
+        ctx.strokeStyle = "red";
+        ctx.fillStyle = "red";
+        const x = this.tabSpawn[rand].posX * w + 0.5;
+        const y = this.tabSpawn[rand].posY * h + 0.5;
+        ctx.strokeRect(
+          x,
+          y,
+          this.tabSpawn[rand].longueur,
+          this.tabSpawn[rand].largeur
+        );
+        ctx.font = "2rem Helvetica";
+        ctx.fillText(this.tabSpawn[rand].Name, w * 0.05, h * 0.95);
+      } else if (!toto) {
+        ctx.clearRect(0, 0, w, h);
+      }
+    },
   },
 };
 </script>
@@ -280,5 +398,13 @@ export default {
 .posseded {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
+}
+
+canvas {
+  background: url(/img/map.jpg) no-repeat center;
+  background-size: contain;
+  /* width: 100%;
+  height: 100%; */
+  border: 2px solid black;
 }
 </style>
