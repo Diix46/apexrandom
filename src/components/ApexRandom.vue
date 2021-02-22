@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card" style="width: 30rem">
+          <div v-if="this.maps" class="card" style="width: 30rem">
             <canvas
               class="card-img-top"
               id="canvas"
@@ -258,6 +258,7 @@ export default {
         },
       ],
       spell: true,
+      maps: false,
       ultimate: true,
       activated: true,
       resetC: true,
@@ -290,6 +291,7 @@ export default {
     },
 
     onRandomClick: function () {
+      this.maps = true;
       this.initData();
       this.selectChar();
       this.selectWeapon();
