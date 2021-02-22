@@ -1,19 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" style="width:20%" src="./assets/logo.png">
-    <ApexRandom msg="Welcome to Your Vue.js App"/>
+    <div class="text-center">
+      <img alt="Vue logo" style="width: 20%" src="./assets/logo.png" />
+    </div>
+    <ApexRandom msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
-import ApexRandom from './components/ApexRandom.vue'
+import ApexRandom from "./components/ApexRandom.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    ApexRandom
-  }
-}
+    ApexRandom,
+  },
+};
 </script>
 
 <style>
@@ -21,7 +23,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }

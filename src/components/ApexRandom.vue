@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Selectionner les personnages possédés :</h1>
+    <h1 class="text-center">Selectionner les personnages possédés :</h1>
     <div class="container">
       <div class="row">
         <ul v-for="char in characters" :key="char.name">
@@ -13,21 +13,27 @@
                 height="100px"
                 width="100px"
               />
-              {{ char.Name }}
+              <p class="mb-0" style="text-align: center">{{ char.Name }}</p>
             </li>
           </div>
         </ul>
       </div>
     </div>
 
-    <div v-if="activated" class="btn btn-danger mb-4" @click="onRandomClick()">
-      Random
+    <div class="text-center">
+      <div
+        v-if="activated"
+        class="btn btn-danger mb-4"
+        @click="onRandomClick()"
+      >
+        Random
+      </div>
     </div>
 
     <!-- Affichage des selections -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col">
           <div v-if="selectedWeapons.length || selectedWeaponsGenerals.length">
             <div class="card" style="width: 18rem">
               <div
@@ -36,35 +42,35 @@
                 :key="char.name"
               >
                 <img :src="`./img/${char.img}`" class="card-img-top" />
-                <h5 class="card-title">{{ char.Name }}</h5>
+                <h5 style="text-align: center" class="card-title">
+                  {{ char.Name }}
+                </h5>
               </div>
 
-              <ul v-for="weap in selectedWeapons" :key="weap.name">
-                <p class="card-text">Arme : {{ weap.Name }}</p>
-              </ul>
-              <ul v-for="weapG in selectedWeaponsGenerals" :key="weapG.name">
-                <p class="card-text">Arme : {{ weapG.Name }}</p>
-              </ul>
-              <p class="card-text">
+              <div v-for="weap in selectedWeapons" :key="weap.name">
+                <p class="card-text ml-2">Arme : {{ weap.Name }}</p>
+              </div>
+              <div v-for="weapG in selectedWeaponsGenerals" :key="weapG.name">
+                <p class="card-text ml-2">Arme : {{ weapG.Name }}</p>
+              </div>
+              <p class="card-text mb-0 ml-2">
                 Utilisation de l'abilité :
                 {{ spell ? "Tu as le droit" : "Tu n'as pas le droit" }}
               </p>
-              <p class="card-text">
+              <p class="card-text ml-2 mb-1">
                 Utilisation de l'ultime :
                 {{ ultimate ? "Tu as le droit" : "Tu n'as pas le droit" }}
               </p>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div v-if="this.maps" class="card" style="width: 30rem">
-            <canvas
-              class="card-img-top"
-              id="canvas"
-              width="508"
-              height="505"
-            ></canvas>
-          </div>
+        <div v-if="this.maps" class="col">
+          <canvas
+            class="card-img-top"
+            id="canvas"
+            width="508"
+            height="505"
+          ></canvas>
         </div>
       </div>
     </div>
@@ -405,8 +411,7 @@ export default {
 canvas {
   background: url(/img/map.jpg) no-repeat center;
   background-size: contain;
-  /* width: 100%;
-  height: 100%; */
-  border: 2px solid black;
+  width: 100%;
+  height: auto;
 }
 </style>
