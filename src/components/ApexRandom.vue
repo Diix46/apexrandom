@@ -2,6 +2,37 @@
   <div>
     <h1 class="text-center">Selectionner les personnages possédés :</h1>
     <div class="container">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="kc"
+          value="Kings Canyon"
+          v-model="checkedMap"
+        />
+        <label class="form-check-label" for="kc">King's Canyon</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="oly"
+          value="Olympus"
+          v-model="checkedMap"
+        />
+        <label class="form-check-label" for="oly">Olympus</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="we"
+          value="World Edge"
+          v-model="checkedMap"
+        />
+        <label class="form-check-label" for="we">World Edge</label>
+      </div>
+
       <div class="row">
         <ul v-for="char in characters" :key="char.name">
           <div class="col">
@@ -65,12 +96,20 @@
           </div>
         </div>
         <div v-if="this.maps" class="col">
-          <canvas
-            class="card-img-top"
-            id="canvas"
-            width="508"
-            height="505"
-          ></canvas>
+          <div
+            v-bind:class="{
+              canvasKC: this.checkedMap == 'Kings Canyon',
+              canvasOly: this.checkedMap == 'Olympus',
+              canvasWE: this.checkedMap == 'World Edge',
+            }"
+          >
+            <canvas
+              class="card-img-top"
+              id="canvas"
+              width="508"
+              height="505"
+            ></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -215,7 +254,9 @@ export default {
           selected: false,
         },
       ],
-      tabSpawn: [
+      tabSpawn: [],
+
+      tabKC: [
         { Name: "Escargot", posX: 0.46, posY: 0.45, longueur: 30, largeur: 30 },
         {
           Name: "Centre de traitement",
@@ -263,11 +304,13 @@ export default {
           largeur: 40,
         },
       ],
+
       spell: true,
       maps: false,
       ultimate: true,
       activated: true,
       resetC: true,
+      checkedMap: "",
     };
   },
 
@@ -375,6 +418,14 @@ export default {
     },
 
     drawSpawn: function (toto) {
+      // Choix de la map :
+      if (this.checkedMap == "Kings Canyon") {
+        this.tabSpawn = this.tabKC;
+      } else if (this.checkedMap == "Olypus") {
+        this.tabSpawn = this.tabOly;
+      } else if (this.checkedMap == "World Edge") {
+        this.tabSpawn = this.tabWE;
+      }
       const canvas = document.getElementById("canvas");
       const h = canvas.height;
       const w = canvas.width;
@@ -408,8 +459,22 @@ export default {
   -webkit-filter: grayscale(1);
 }
 
-canvas {
-  background: url(/img/map.jpg) no-repeat center;
+.canvasKC {
+  background: url(/img/mapKC.jpg) no-repeat center;
+  background-size: contain;
+  width: 100%;
+  height: auto;
+}
+
+.canvasOly {
+  background: url(/img/mapOly.jpg) no-repeat center;
+  background-size: contain;
+  width: 100%;
+  height: auto;
+}
+
+.canvasWE {
+  background: url(/img/mapWE.jpg) no-repeat center;
   background-size: contain;
   width: 100%;
   height: auto;
