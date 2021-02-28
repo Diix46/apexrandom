@@ -1,9 +1,23 @@
 <template>
   <div>
-    {{ results.character.name }}
-    {{ results.weapons[0].name }}
-    {{ results.weapons[1].name }}
-    {{ results.map }}
+    <div class="resultWithoutMap">
+      <img :src="`./img/${results.character.img}`" />
+      <div class="result">
+        <div class="charName">
+          {{ results.character.name }}
+        </div>
+        <div>
+          {{ results.weapons[0].name }}
+        </div>
+        <div>
+          {{ results.weapons[1].name }}
+        </div>
+        <div v-if="results.abilites === 1">Abilités ok</div>
+        <div v-else>Pas d'abilités</div>
+        <div v-if="results.ultimate === 1">Ultimate ok</div>
+        <div v-else>Pas d'ultimate</div>
+      </div>
+    </div>
     <div :class="classSpawn">
       <canvas id="canvas" width="508" height="505"></canvas>
     </div>
@@ -146,7 +160,6 @@ export default {
       ctx.clearRect(0, 0, w, h);
       if (canvas.getContext) {
         const rand = Math.floor(Math.random() * this.tabSpawn.length);
-        console.log(rand);
         ctx.strokeStyle = "red";
         ctx.fillStyle = "red";
         const x = this.tabSpawn[rand].posX * w + 0.5;
@@ -157,7 +170,7 @@ export default {
           this.tabSpawn[rand].longueur,
           this.tabSpawn[rand].largeur
         );
-        ctx.font = "2rem Helvetica";
+        ctx.font = "2.5rem ApexLegend";
         ctx.fillText(this.tabSpawn[rand].Name, w * 0.05, h * 0.95);
       }
     },
@@ -182,22 +195,42 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.charName {
+  margin-bottom: 35%;
+}
+img {
+  width: 200px;
+  border: 4px solid #b93038;
+  box-shadow: 6px 6px 0px #f97b2e;
+}
+.resultWithoutMap {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.result {
+  flex-direction: column;
+  justify-content: center;
+  font-family: ApexLegend;
+  font-size: 2rem;
+  margin-left: 3%;
+}
 .canvasKC {
-  background: url(/img/mapKC.jpg) no-repeat;
+  background: url(/img/mapKC.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
 }
 
 .canvasOly {
-  background: url(/img/mapOly.jpg) no-repeat;
+  background: url(/img/mapOly.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
 }
 
 .canvasWE {
-  background: url(/img/mapWE.jpg) no-repeat;
+  background: url(/img/mapWE.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;

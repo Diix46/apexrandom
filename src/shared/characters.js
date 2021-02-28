@@ -1,82 +1,82 @@
 export default [
     {
       name: "Bangalore",
-      img: "bangalore.png",
+      img: "bangalore.jpg",
       owned: true,
     },
     {
       name: "Bloodhound",
-      img: "bloodhound.png",
+      img: "bloodhound.jpg",
       owned: true,
     },
     {
       name: "Caustic",
-      img: "caustic.png",
+      img: "caustic.jpg",
       owned: false,
     },
     {
       name: "Crypto",
-      img: "crypto.png",
+      img: "crypto.jpg",
       owned: false,
     },
     {
       name: "Fuse",
-      img: "fuse.png",
+      img: "fuse.jpg",
       owned: false,
     },
     {
       name: "Gibraltar",
-      img: "gibraltar.png",
+      img: "gibraltar.jpg",
       owned: true,
     },
     {
       name: "Horizon",
-      img: "horizon.png",
+      img: "horizon.jpg",
       owned: false,
     },
     {
       name: "Lifeline",
-      img: "lifeline.png",
+      img: "lifeline.jpg",
       owned: true,
     },
     {
       name: "Loba",
-      img: "loba.png",
+      img: "loba.jpg",
       owned: false,
     },
     {
       name: "Mirage",
-      img: "mirage.png",
+      img: "mirage.jpg",
       owned: false,
     },
     {
       name: "Octane",
-      img: "octane.png",
+      img: "octane.jpg",
       owned: false,
     },
     {
       name: "Pathfinder",
-      img: "pathfinder.png",
+      img: "pathfinder.jpg",
       owned: true,
     },
     {
       name: "Rampart",
-      img: "rampart.png",
+      img: "rampart.jpg",
       owned: false,
     },
     {
       name: "Revenant",
-      img: "revenant.png",
+      img: "revenant.jpg",
       owned: false,
     },
     {
       name: "Wattson",
-      img: "wattson.png",
+      img: "wattson.jpg",
       owned: false,
     },
     {
       name: "Wraith",
-      img: "wraith.png",
+      img: "wraith.jpg",
       owned: true,
     },
   ]
