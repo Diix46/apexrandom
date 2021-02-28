@@ -1,7 +1,6 @@
 <template>
   <div class="character">
-    <ul v-for="char in allCharacters" :key="char.name">
-      <li @click="onImgClick(char)">
+      <li v-for="char in allCharacters" :key="char.name" @click="onImgClick(char)">
         <div :class="{ notowned: !char.owned , owned: char.owned }">
         <img
           :src="`./img/characters/${char.img}`"
@@ -11,7 +10,6 @@
         <p>{{ char.name }}</p>
         </div>
       </li>
-    </ul>
   </div>
 </template>
 
@@ -54,6 +52,7 @@ export default {
   box-shadow: 2px 2px 0px #696969;
 }
 li{
+  list-style-type : none;
   margin-left: 1.5px;
   margin-right: 1.5px;
   margin-bottom: 3px;

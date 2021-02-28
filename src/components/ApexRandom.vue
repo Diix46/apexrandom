@@ -12,6 +12,8 @@
         <div class="header">
           <h1>La map</h1>
           <p>Veuillez selectionner la map en cours :</p>
+        </div>
+        <MapSelector v-on:map-select="onMapSelect($event)" />
           <button
             v-if="ownedCharacters.length"
             :disabled="!ownedCharacters.length"
@@ -19,8 +21,6 @@
           >
             Random
           </button>
-        </div>
-        <MapSelector v-on:map-select="onMapSelect($event)" />
       </div>
     </div>
     <div v-if="results" class="ShowResults" style="flex: 2">
@@ -119,10 +119,10 @@ export default {
   flex-direction: row;
 }
 .container {
-  max-width: 60%;
+  max-width: 50%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
 }
 .charSelector {
   margin-left: 0.5%;
@@ -151,16 +151,21 @@ h1 {
   color: black;
 }
 button {
-  margin-top: 7%;
   font-family: ApexLegend;
-  border: none;
+  border: 1px solid black;
   color: white;
   background-color: #f97b2e;
   font-size: 4rem;
   text-decoration: none;
+  box-shadow: 4px 4px 0px #696969;
+  margin-bottom: 3%;
 }
 @media (max-width: 800px) {
   .box {
+    flex-direction: column;
+  }
+  .container{
+    max-width: 100%;
     flex-direction: column;
   }
 }
