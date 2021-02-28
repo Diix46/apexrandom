@@ -18,8 +18,8 @@ export default {
 </script>
 <style scoped>
 .mainHeader{
-  margin-left: 0.5%;
   display: flex;
+  justify-content: center;
   height: 2rem;
   font-family: ApexLegend;
   font-size: 2rem;

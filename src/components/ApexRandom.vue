@@ -14,20 +14,21 @@
           <p>Veuillez selectionner la map en cours :</p>
         </div>
         <MapSelector v-on:map-select="onMapSelect($event)" />
-          <button
-            v-if="ownedCharacters.length"
-            :disabled="!ownedCharacters.length"
-            @click="onRandomClick()"
-          >
-            Random
-          </button>
+        <button
+          v-if="ownedCharacters.length"
+          :disabled="!ownedCharacters.length"
+          @click="onRandomClick()"
+        >
+          Random
+        </button>
       </div>
     </div>
-    <div v-if="results" class="ShowResults" style="flex: 2">
+    <div v-if="results" class="overlay" @click="onCloseClick()"></div>
+    <div v-if="results" class="ShowResults">
       <div class="header">
         <h1>Voici le résultat</h1>
       </div>
-      <ShowResults v-if="results" v-bind:results="results" />
+      <ShowResults v-if="results" v-bind:results="results" v-bind:onCloseClick="onCloseClick"/>
     </div>
   </div>
 </template>
@@ -77,6 +78,13 @@ export default {
   },
 
   methods: {
+    onCloseClick: function () {
+      this.selectedCharacter = null;
+      this.selectedWeapons = null;
+      this.abilitiesAllowed = null;
+      this.ultimateAllowed = null;
+    },
+
     onRandomClick: function () {
       this.selectedCharacter = null;
       this.selectedCharacter = this.selectCharacter();
@@ -116,10 +124,13 @@ export default {
 <style>
 .box {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .container {
-  max-width: 50%;
+  flex-direction: row;
+  display: flex;
+  width: 1200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -133,8 +144,18 @@ export default {
   margin-right: 0.25%;
 }
 .ShowResults {
-  margin-left: 0.5%;
-  margin-right: 0.5%;
+  position: fixed;
+  top: 3%;
+  background: #f1f1f1;
+  padding: 20px;
+}
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .header {
   background-image: url(/img/texture.jpg);
@@ -164,9 +185,12 @@ button {
   .box {
     flex-direction: column;
   }
-  .container{
+  .container {
     max-width: 100%;
     flex-direction: column;
+  }
+  .ShowResults {
+    width: 80%;
   }
 }
 </style>

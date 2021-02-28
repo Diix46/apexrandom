@@ -48,6 +48,7 @@
     <div :class="classSpawn">
       <canvas id="canvas" width="508" height="505"></canvas>
     </div>
+    <button class="closeButton" @click="onCloseClick">Fermer</button>
   </div>
 </template>
 
@@ -57,6 +58,9 @@ export default {
   props: {
     results: {
       type: Object,
+    },
+    onCloseClick: {
+      type: Function,
     },
   },
 
@@ -224,6 +228,14 @@ export default {
 <style scoped>
 .charName {
   margin-bottom: 50px;
+}
+.closeButton {
+  font-size: 2rem;
+  width: 100%;
+  margin-bottom: -10px;
+  margin-top: 10px;
+  color: black;
+  background-color: #B93038;
 }
 .characterImg {
   width: 200px;
