@@ -57,10 +57,6 @@ export default {
   font-family: ApexLegend;
   font-size: 2rem;
 }
-/* .nomMap {
-  text-align: left;
-  margin-left: 1%;
-} */
 .KC{
   position: relative;
   text-align: left;
@@ -89,5 +85,10 @@ export default {
 .mapSelected {
   border: 3px solid black;
   box-shadow: 4px 4px 0px #696969;
+}
+@media (max-width: 800px) {
+  .affMap {
+    margin-left: 3%;
+  }
 }
 </style>

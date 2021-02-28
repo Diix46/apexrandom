@@ -278,4 +278,9 @@ export default {
   width: 100%;
   height: auto;
 }
+@media (max-width: 800px) {
+  .closeButton {
+    margin-left: -1%;
+  }
+}
 </style>

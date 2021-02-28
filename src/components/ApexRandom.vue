@@ -24,11 +24,15 @@
       </div>
     </div>
     <div v-if="results" class="overlay" @click="onCloseClick()"></div>
-    <div v-if="results" class="ShowResults">
+    <div v-if="results" class="showResults">
       <div class="header">
         <h1>Voici le résultat</h1>
       </div>
-      <ShowResults v-if="results" v-bind:results="results" v-bind:onCloseClick="onCloseClick"/>
+      <ShowResults
+        v-if="results"
+        v-bind:results="results"
+        v-bind:onCloseClick="onCloseClick"
+      />
     </div>
   </div>
 </template>
@@ -133,7 +137,7 @@ export default {
   width: 1200px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
 }
 .charSelector {
   margin-left: 0.5%;
@@ -143,7 +147,7 @@ export default {
   margin-left: 0.25%;
   margin-right: 0.25%;
 }
-.ShowResults {
+.showResults {
   position: fixed;
   top: 3%;
   background: #f1f1f1;
@@ -159,7 +163,7 @@ export default {
 }
 .header {
   background-image: url(/img/texture.jpg);
-  height: 30%;
+  height: 20%;
   text-align: center;
   font-family: ApexLegend;
   font-size: 1.5rem;
@@ -189,8 +193,21 @@ button {
     max-width: 100%;
     flex-direction: column;
   }
-  .ShowResults {
+  .showResults {
     width: 80%;
+  }
+  .header{
+    margin-left: 3%;
+  }
+  button{
+    margin-left: 4%;
+  }
+}
+@media (orientation: landscape) {
+  .showResults {
+    /* margin-top: -25%; */
+    position: absolute;
+    transform: scale(0.8);
   }
 }
 </style>
