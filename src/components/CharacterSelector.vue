@@ -53,8 +53,8 @@ export default {
 }
 li{
   list-style-type : none;
-  margin-left: 1.5px;
-  margin-right: 1.5px;
-  margin-bottom: 3px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 5px;
 }
 </style>
