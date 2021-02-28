@@ -188,7 +188,7 @@ export default {
       if (canvas.getContext) {
         const rand = Math.floor(Math.random() * this.tabSpawn.length);
         ctx.strokeStyle = "red";
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "black";
         const x = this.tabSpawn[rand].posX * w + 0.5;
         const y = this.tabSpawn[rand].posY * h + 0.5;
         ctx.strokeRect(

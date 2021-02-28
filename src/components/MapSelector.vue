@@ -1,14 +1,17 @@
 <template>
   <div class="affMap">
-    <div v-for="map in maps" :key="map.name" :class="map.class">
+    <div v-for="map in maps" :key="map.name">
       <img
         @click="onMapSelect(map.name)"
-        :src="`./img/maps/${map.class}.jpg`"
-        :class="{ mapSelected: !(checkedMap === map.name) }"
+        :src="`./img/maps/${map.img}.jpg`"
+        :class="{
+          mapNotSelected: !(checkedMap === map.name),
+          mapSelected: checkedMap === map.name,
+        }"
         width="98%"
       />
-      <p class="nomMap">
-      {{map.name}}
+      <p :class="map.img">
+        {{ map.name }}
       </p>
     </div>
   </div>
@@ -20,9 +23,9 @@ export default {
   data() {
     return {
       maps: [
-        { name: "King's Canyon", class: "KC" },
-        { name: "Olympus", class: "Olympus" },
-        { name: "World's Edge", class: "WE" },
+        { name: "King's Canyon", img: "KC" },
+        { name: "Olympus", img: "Olympus" },
+        { name: "World's Edge", img: "WE" },
       ],
       checkedMap: "King's Canyon",
     };
@@ -46,7 +49,7 @@ export default {
 </script>
 
 <style>
-.affMap{
+.affMap {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
@@ -54,21 +57,37 @@ export default {
   font-family: ApexLegend;
   font-size: 2rem;
 }
-.nomMap{
+/* .nomMap {
   text-align: left;
   margin-left: 1%;
+} */
+.KC{
+  position: relative;
+  text-align: left;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: -20px;
 }
-.Olympus {
-  background-image: url(/img/OlySelect.jpg) no-repeat;
+.Olympus{
+  position: relative;
+  text-align: left;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: -20px;
 }
-.WE {
-  background-image: url(/img/WESelect.jpg) no-repeat;
+.WE{
+  position: relative;
+  text-align: left;
+  bottom: 50px;
+  left: 20px;
+  margin-bottom: -20px;
 }
-.KC {
-  background-image: url(/img/KCSelect.jpg) no-repeat;
-}
-.mapSelected {
+.mapNotSelected {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
+}
+.mapSelected {
+  border: 3px solid black;
+  box-shadow: 4px 4px 0px #696969;
 }
 </style>

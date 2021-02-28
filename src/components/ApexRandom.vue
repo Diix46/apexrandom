@@ -1,21 +1,27 @@
 <template>
   <div class="box">
-    <div class="charSelector" style="flex: 1">
-      <div class="header">
-        <h1>Vos légendes</h1>
-        <p>Veuillez selectionner les légendes que vous possédez :</p>
+    <div class="container">
+      <div class="charSelector" style="flex: 1">
+        <div class="header">
+          <h1>Vos légendes</h1>
+          <p>Veuillez selectionner les légendes que vous possédez :</p>
+        </div>
+        <CharacterSelector v-bind:all-characters="allCharacters" />
       </div>
-      <CharacterSelector v-bind:all-characters="allCharacters" />
-    </div>
-    <div class="mapSelector" style="flex: 1">
-      <div class="header">
-        <h1>La map</h1>
-        <p>Veuillez selectionner la map en cours :</p>
-        <button v-if="ownedCharacters.length" :disabled="!ownedCharacters.length" @click="onRandomClick()">
-          Random
-        </button>
+      <div class="mapSelector" style="flex: 1">
+        <div class="header">
+          <h1>La map</h1>
+          <p>Veuillez selectionner la map en cours :</p>
+          <button
+            v-if="ownedCharacters.length"
+            :disabled="!ownedCharacters.length"
+            @click="onRandomClick()"
+          >
+            Random
+          </button>
+        </div>
+        <MapSelector v-on:map-select="onMapSelect($event)" />
       </div>
-      <MapSelector v-on:map-select="onMapSelect($event)" />
     </div>
     <div v-if="results" class="ShowResults" style="flex: 2">
       <div class="header">
@@ -48,6 +54,8 @@ export default {
       selectedMap: null,
       selectedCharacter: null,
       selectedWeapons: null,
+      abilitiesAllowed: null,
+      ultimateAllowed: null,
     };
   },
   computed: {
@@ -62,8 +70,8 @@ export default {
         character: this.selectedCharacter,
         weapons: this.selectedWeapons,
         map: this.selectedMap,
-        abilities: Math.floor(Math.random() * 2),
-        ultimate: Math.floor(Math.random() * 2)
+        abilities: this.abilitiesAllowed,
+        ultimate: this.ultimateAllowed,
       };
     },
   },
@@ -73,6 +81,8 @@ export default {
       this.selectedCharacter = null;
       this.selectedCharacter = this.selectCharacter();
       this.selectedWeapons = this.selectWeapons();
+      this.abilitiesAllowed = Math.floor(Math.random() * 2);
+      this.ultimateAllowed = Math.floor(Math.random() * 2);
     },
 
     selectCharacter: function () {
@@ -108,6 +118,12 @@ export default {
   display: flex;
   flex-direction: row;
 }
+.container {
+  max-width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .charSelector {
   margin-left: 0.5%;
   margin-right: 0.5%;
@@ -122,7 +138,7 @@ export default {
 }
 .header {
   background-image: url(/img/texture.jpg);
-  height: 17rem;
+  height: 30%;
   text-align: center;
   font-family: ApexLegend;
   font-size: 1.5rem;

@@ -2,7 +2,7 @@
   <div class="character">
     <ul v-for="char in allCharacters" :key="char.name">
       <li @click="onImgClick(char)">
-        <div :class="{ owned: !char.owned , notowned: char.owned }">
+        <div :class="{ notowned: !char.owned , owned: char.owned }">
         <img
           :src="`./img/characters/${char.img}`"
           height="100px"
@@ -43,14 +43,15 @@ export default {
   text-align: center;
   font-size: 1.5rem;
 }
-.owned {
+.notowned {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
   background-color: #fa9759;
   border: 4px solid white;
 }
-.notowned{
+.owned{
   border: 4px solid #B93038;
+  box-shadow: 2px 2px 0px #696969;
 }
 li{
   margin-left: 1.5px;
