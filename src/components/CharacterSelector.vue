@@ -4,7 +4,7 @@
       <li @click="onImgClick(char)">
         <div :class="{ owned: !char.owned , notowned: char.owned }">
         <img
-          :src="`./img/${char.img}`"
+          :src="`./img/characters/${char.img}`"
           height="100px"
           width="100px"
         />

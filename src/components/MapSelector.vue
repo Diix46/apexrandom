@@ -3,7 +3,7 @@
     <div v-for="map in maps" :key="map.name" :class="map.class">
       <img
         @click="onMapSelect(map.name)"
-        :src="`./img/${map.class}.jpg`"
+        :src="`./img/maps/${map.class}.jpg`"
         :class="{ mapSelected: !(checkedMap === map.name) }"
         width="98%"
       />

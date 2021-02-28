@@ -62,7 +62,7 @@ export default {
         character: this.selectedCharacter,
         weapons: this.selectedWeapons,
         map: this.selectedMap,
-        abilites: Math.floor(Math.random() * 2),
+        abilities: Math.floor(Math.random() * 2),
         ultimate: Math.floor(Math.random() * 2)
       };
     },

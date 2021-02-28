@@ -1,21 +1,48 @@
 <template>
   <div>
     <div class="resultWithoutMap">
-      <img :src="`./img/${results.character.img}`" />
+      <img
+        class="characterImg"
+        :src="`./img/characters/${results.character.img}`"
+      />
       <div class="result">
         <div class="charName">
           {{ results.character.name }}
         </div>
         <div>
+          <img
+            class="weaponsImg"
+            :src="`./img/weapons/${results.weapons[0].img}`"
+          />
           {{ results.weapons[0].name }}
         </div>
         <div>
+          <img
+            class="weaponsImg"
+            :src="`./img/weapons/${results.weapons[1].img}`"
+          />
           {{ results.weapons[1].name }}
         </div>
-        <div v-if="results.abilites === 1">Abilités ok</div>
-        <div v-else>Pas d'abilités</div>
-        <div v-if="results.ultimate === 1">Ultimate ok</div>
-        <div v-else>Pas d'ultimate</div>
+        <div class="abilities">
+          <div v-if="results.abilities === 1">
+            <img src="./../../public/img/abilities.png" />
+            Abilités ok
+          </div>
+          <div v-else>
+            <img src="./../../public/img/abilities.png" />
+            Pas d'abilités
+          </div>
+        </div>
+        <div class="ultimate">
+          <div v-if="results.ultimate === 1">
+            <img src="./../../public/img/ultimate.png" />
+            Ultimate ok
+          </div>
+          <div v-else>
+            <img src="./../../public/img/ultimate.png" />
+            Pas d'ultimate
+          </div>
+        </div>
       </div>
     </div>
     <div :class="classSpawn">
@@ -196,12 +223,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .charName {
-  margin-bottom: 35%;
+  margin-bottom: 50px;
 }
-img {
+.characterImg {
   width: 200px;
   border: 4px solid #b93038;
   box-shadow: 6px 6px 0px #f97b2e;
+}
+.weaponsImg {
+  width: 50px;
+  height: 20px;
 }
 .resultWithoutMap {
   margin-top: 10px;
@@ -216,21 +247,21 @@ img {
   margin-left: 3%;
 }
 .canvasKC {
-  background: url(/img/mapKC.png) no-repeat;
+  background: url(/img/maps/mapKC.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
 }
 
 .canvasOly {
-  background: url(/img/mapOly.png) no-repeat;
+  background: url(/img/maps/mapOly.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
 }
 
 .canvasWE {
-  background: url(/img/mapWE.png) no-repeat;
+  background: url(/img/maps/mapWE.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
