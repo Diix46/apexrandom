@@ -1,6 +1,6 @@
 <template>
   <div class="affMap">
-    <div v-for="map in maps" :key="map.name">
+    <div class="oneMap" v-for="map in maps" :key="map.name">
       <img
         @click="onMapSelect(map.name)"
         :src="`./img/maps/${map.img}.jpg`"
@@ -10,7 +10,7 @@
         }"
         width="98%"
       />
-      <p :class="map.img">
+      <p class="mapText">
         {{ map.name }}
       </p>
     </div>
@@ -57,26 +57,17 @@ export default {
   font-family: ApexLegend;
   font-size: 2rem;
 }
-.KC{
+.oneMap{
+  display: flex;
   position: relative;
-  text-align: left;
-  bottom: 50px;
-  left: 20px;
-  margin-bottom: -20px;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
 }
-.Olympus{
-  position: relative;
-  text-align: left;
-  bottom: 50px;
-  left: 20px;
-  margin-bottom: -20px;
-}
-.WE{
-  position: relative;
-  text-align: left;
-  bottom: 50px;
-  left: 20px;
-  margin-bottom: -20px;
+.mapText{
+  justify-items: flex-start;
+  position: absolute;
+  bottom: 0;
+  margin: 0 0 10px 10px;
 }
 .mapNotSelected {
   filter: grayscale(1);
@@ -87,8 +78,8 @@ export default {
   box-shadow: 4px 4px 0px #696969;
 }
 @media (max-width: 800px) {
-  .affMap {
-    margin-left: 3%;
+  .affMap{
+    margin-left: 0.5rem;
   }
 }
 </style>

@@ -41,6 +41,13 @@ export default {
   text-align: center;
   font-size: 1.5rem;
 }
+li:hover {
+  border: 2px solid #B93038;
+  box-shadow: 4px 4px 4px #696969;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 1px;
+}
 .notowned {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
@@ -49,7 +56,7 @@ export default {
 }
 .owned{
   border: 4px solid #B93038;
-  box-shadow: 2px 2px 0px #696969;
+  box-shadow: 2px 2px 2px #696969;
 }
 li{
   list-style-type : none;

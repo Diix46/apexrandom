@@ -15,6 +15,7 @@
         </div>
         <MapSelector v-on:map-select="onMapSelect($event)" />
         <button
+        class="buttonRandom"
           v-if="ownedCharacters.length"
           :disabled="!ownedCharacters.length"
           @click="onRandomClick()"
@@ -175,15 +176,19 @@ h1 {
   font-family: ApexLegend;
   color: black;
 }
-button {
+.buttonRandom {
   font-family: ApexLegend;
   border: 1px solid black;
   color: white;
   background-color: #f97b2e;
   font-size: 4rem;
+  box-shadow: 2px 2px 2px #696969;
   text-decoration: none;
-  box-shadow: 4px 4px 0px #696969;
+  
   margin-bottom: 3%;
+}
+.buttonRandom:hover {
+  box-shadow: 4px 4px 4px #696969;
 }
 @media (max-width: 800px) {
   .box {
@@ -196,11 +201,13 @@ button {
   .showResults {
     width: 80%;
   }
-  .header{
-    margin-left: 3%;
-  }
+
   button{
-    margin-left: 4%;
+    margin-left: 0.5rem;
+  }
+  .header{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
 }
 @media (orientation: landscape) {
