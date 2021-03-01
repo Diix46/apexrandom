@@ -234,7 +234,9 @@ export default {
   width: 100%;
   margin-bottom: -10px;
   margin-top: 10px;
+  font-family: ApexLegend;
   color: black;
+  border: 1px solid black;
   background-color: #B93038;
 }
 .characterImg {
