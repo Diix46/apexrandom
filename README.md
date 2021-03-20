@@ -1,5 +1,7 @@
 # apexrandom
 
+Random roulette generator for Apex Legend for more FUN !!!
+
 ## Project setup
 ```
 npm install
