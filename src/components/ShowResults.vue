@@ -1,12 +1,54 @@
 <template>
   <div>
-    {{ results.character.name }}
-    {{ results.weapons[0].name }}
-    {{ results.weapons[1].name }}
-    {{ results.map }}
-    <div :class="classSpawn">
-      <canvas id="canvas" width="508" height="505"></canvas>
+    <div class="resultWithoutMap">
+      <img
+        class="characterImg"
+        :src="`./img/characters/${results.character.img}`"
+      />
+      <div class="result">
+        <div class="charName">
+          {{ results.character.name }}
+        </div>
+        <div>
+          <img
+            class="weaponsImg"
+            :src="`./img/weapons/${results.weapons[0].img}`"
+          />
+          {{ results.weapons[0].name }}
+        </div>
+        <div>
+          <img
+            class="weaponsImg"
+            :src="`./img/weapons/${results.weapons[1].img}`"
+          />
+          {{ results.weapons[1].name }}
+        </div>
+        <div class="abilities">
+          <div v-if="results.abilities === 1">
+            <img src="./../../public/img/abilities.png" />
+            Abilités ok
+          </div>
+          <div v-else>
+            <img src="./../../public/img/abilities.png" />
+            Pas d'abilités
+          </div>
+        </div>
+        <div class="ultimate">
+          <div v-if="results.ultimate === 1">
+            <img src="./../../public/img/ultimate.png" />
+            Ultimate ok
+          </div>
+          <div v-else>
+            <img src="./../../public/img/ultimate.png" />
+            Pas d'ultimate
+          </div>
+        </div>
+      </div>
     </div>
+    <div :class="classSpawn">
+      <canvas id="canvas" width="508" height="505" />
+    </div>
+    <button class="closeButton" @click="onCloseClick">Fermer</button>
   </div>
 </template>
 
@@ -16,6 +58,9 @@ export default {
   props: {
     results: {
       type: Object,
+    },
+    onCloseClick: {
+      type: Function,
     },
   },
 
@@ -146,9 +191,8 @@ export default {
       ctx.clearRect(0, 0, w, h);
       if (canvas.getContext) {
         const rand = Math.floor(Math.random() * this.tabSpawn.length);
-        console.log(rand);
         ctx.strokeStyle = "red";
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "black";
         const x = this.tabSpawn[rand].posX * w + 0.5;
         const y = this.tabSpawn[rand].posY * h + 0.5;
         ctx.strokeRect(
@@ -157,7 +201,7 @@ export default {
           this.tabSpawn[rand].longueur,
           this.tabSpawn[rand].largeur
         );
-        ctx.font = "2rem Helvetica";
+        ctx.font = "2.5rem ApexLegend";
         ctx.fillText(this.tabSpawn[rand].Name, w * 0.05, h * 0.95);
       }
     },
@@ -182,24 +226,70 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.charName {
+  margin-bottom: 50px;
+}
+
+.closeButton {
+  font-size: 2rem;
+  width: 100%;
+  margin-bottom: -10px;
+  margin-top: 10px;
+  font-family: ApexLegend;
+  color: black;
+  border: 1px solid black;
+  background-color: #b93038;
+}
+
+.characterImg {
+  width: 200px;
+  border: 4px solid #b93038;
+  box-shadow: 6px 6px 0px #f97b2e;
+}
+
+.weaponsImg {
+  width: 50px;
+  height: 20px;
+}
+
+.resultWithoutMap {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.result {
+  flex-direction: column;
+  justify-content: center;
+  font-family: ApexLegend;
+  font-size: 2rem;
+  margin-left: 3%;
+}
+
 .canvasKC {
-  background: url(/img/mapKC.jpg) no-repeat;
+  background: url(/img/maps/mapKC.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
 }
 
 .canvasOly {
-  background: url(/img/mapOly.jpg) no-repeat;
+  background: url(/img/maps/mapOly.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
 }
 
 .canvasWE {
-  background: url(/img/mapWE.jpg) no-repeat;
+  background: url(/img/maps/mapWE.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 800px) {
+  .closeButton {
+    margin-left: -1%;
+  }
 }
 </style>
