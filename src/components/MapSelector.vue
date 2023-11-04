@@ -1,15 +1,19 @@
 <template>
   <div class="affMap">
-    <div class="oneMap" v-for="map in maps" :key="map.name">
+    <div
+      v-for="map in maps"
+      :key="map.name"
+      class="oneMap"
+    >
       <img
-        @click="onMapSelect(map.name)"
         :src="`./img/maps/${map.img}.jpg`"
         :class="{
           mapNotSelected: !(checkedMap === map.name),
           mapSelected: checkedMap === map.name,
         }"
         width="98%"
-      />
+        @click="onMapSelect(map.name)"
+      >
       <p class="mapText">
         {{ map.name }}
       </p>
@@ -31,18 +35,18 @@ export default {
     };
   },
 
-  methods: {
-    onMapSelect: function (nameMap) {
-      this.checkedMap = nameMap;
-    },
-  },
-
   watch: {
     checkedMap: {
       handler() {
         this.$emit("map-select", this.checkedMap);
       },
       immediate: true,
+    },
+  },
+
+  methods: {
+    onMapSelect: function (nameMap) {
+      this.checkedMap = nameMap;
     },
   },
 };

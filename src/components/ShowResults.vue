@@ -46,7 +46,7 @@
       </div>
     </div>
     <div :class="classSpawn">
-      <canvas id="canvas" width="508" height="505"></canvas>
+      <canvas id="canvas" width="508" height="505" />
     </div>
     <button class="closeButton" @click="onCloseClick">Fermer</button>
   </div>
@@ -229,6 +229,7 @@ export default {
 .charName {
   margin-bottom: 50px;
 }
+
 .closeButton {
   font-size: 2rem;
   width: 100%;
@@ -237,22 +238,26 @@ export default {
   font-family: ApexLegend;
   color: black;
   border: 1px solid black;
-  background-color: #B93038;
+  background-color: #b93038;
 }
+
 .characterImg {
   width: 200px;
   border: 4px solid #b93038;
   box-shadow: 6px 6px 0px #f97b2e;
 }
+
 .weaponsImg {
   width: 50px;
   height: 20px;
 }
+
 .resultWithoutMap {
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
 }
+
 .result {
   flex-direction: column;
   justify-content: center;
@@ -260,6 +265,7 @@ export default {
   font-size: 2rem;
   margin-left: 3%;
 }
+
 .canvasKC {
   background: url(/img/maps/mapKC.png) no-repeat;
   background-size: contain;
@@ -280,6 +286,7 @@ export default {
   width: 100%;
   height: auto;
 }
+
 @media (max-width: 800px) {
   .closeButton {
     margin-left: -1%;
