@@ -1,13 +1,15 @@
+export const defaultLegends = ["Bangalore","Bloodhound","Gibraltar","Lifeline","Pathfinder","Wraith"]
+
 export default [
   {
     name: "Ash",
-    img: "wraith.png",
-    owned: true,
+    img: "ash.png",
+    owned: false,
   },
   {
     name: "Ballistic",
-    img: "wraith.png",
-    owned: true,
+    img: "ballistic.png",
+    owned: false,
   },
   {
     name: "Bangalore",
@@ -22,27 +24,27 @@ export default [
   {
     name: "Caustic",
     img: "caustic.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Catalyst",
     img: "catalyst.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Conduit",
     img: "conduit.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Crypto",
     img: "crypto.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Fuse",
     img: "fuse.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Gibraltar",
@@ -52,7 +54,7 @@ export default [
   {
     name: "Horizon",
     img: "horizon.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Lifeline",
@@ -62,27 +64,27 @@ export default [
   {
     name: "Loba",
     img: "loba.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Mirage",
     img: "mirage.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Newcastle",
     img: "newcastle.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Octane",
     img: "octane.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Mad Maggie",
     img: "mad_maggie.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Pathfinder",
@@ -92,36 +94,36 @@ export default [
   {
     name: "Rampart",
     img: "rampart.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Revenant",
     img: "revenant.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Seer",
     img: "seer.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Valkyrie",
     img: "valkyrie.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Vantage",
     img: "vantage.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Wattson",
     img: "wattson.png",
-    owned: true,
+    owned: false,
   },
   {
     name: "Wraith",
     img: "wraith.png",
     owned: true,
-  }
-]
+  },
+];

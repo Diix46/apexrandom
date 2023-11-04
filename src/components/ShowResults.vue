@@ -145,6 +145,24 @@ export default {
             largeur: 30,
           },
         ],
+        tabSP: [
+          {
+            Name: "Escargot",
+            posX: 0.85,
+            posY: 0.62,
+            longueur: 30,
+            largeur: 30,
+          },
+        ],
+        tabBM: [
+          {
+            Name: "Escargot",
+            posX: 0.85,
+            posY: 0.62,
+            longueur: 30,
+            largeur: 30,
+          },
+        ],
       },
       spell: true,
       ultimate: true,
@@ -159,6 +177,10 @@ export default {
         return this.spawns.tabOly;
       } else if (this.results.map === "World's Edge") {
         return this.spawns.tabWE;
+      } else if (this.results.map === "Storm Point") {
+        return this.spawns.tabSP;
+      } else if (this.results.map === "Broken Moon") {
+        return this.spawns.tabBM;
       }
       return null;
     },
@@ -170,6 +192,10 @@ export default {
         return "canvasOly";
       } else if (this.results.map === "World's Edge") {
         return "canvasWE";
+      } else if (this.results.map === "Storm Point") {
+        return "canvasSP";
+      } else if (this.results.map === "Broken Moon") {
+        return "canvasBM";
       }
       return null;
     },
@@ -202,6 +228,10 @@ export default {
           this.tabSpawn[rand].largeur
         );
         ctx.font = "2.5rem ApexLegend";
+        ctx.fillStyle = "#ffffff";
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 4;
+        ctx.strokeText(this.tabSpawn[rand].Name, w * 0.05, h * 0.95);
         ctx.fillText(this.tabSpawn[rand].Name, w * 0.05, h * 0.95);
       }
     },
@@ -282,6 +312,20 @@ export default {
 
 .canvasWE {
   background: url(/img/maps/mapWE.png) no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: auto;
+}
+
+.canvasSP {
+  background: url(/img/maps/mapSP.png) no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: auto;
+}
+
+.canvasBM {
+  background: url(/img/maps/mapBM.png) no-repeat;
   background-size: contain;
   width: 100%;
   height: auto;

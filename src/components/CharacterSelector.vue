@@ -10,14 +10,23 @@
           :src="`./img/characters/${char.img}`"
           height="100px"
           width="100px"
-        >
+        />
         <p>{{ char.name }}</p>
       </div>
     </li>
+    <button @click="allSelected()" v-if="this.haveAllLegends">
+      Unselect all Legends
+    </button>
+    <button @click="allSelected()" v-if="!this.haveAllLegends">
+      Select all Legends
+    </button>
+    <button @click="restoreDefault()">Restore Default</button>
   </div>
 </template>
 
 <script>
+import { defaultLegends } from "./../shared/characters";
+
 export default {
   name: "CharacterSelector",
   props: {
@@ -26,10 +35,27 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      haveAllLegends: false,
+    };
+  },
 
   methods: {
     onImgClick: function (char) {
       char.owned = !char.owned;
+    },
+    restoreDefault: function () {
+      for (const char of this.allCharacters) {
+        char.owned = defaultLegends.includes(char.name);
+      }
+      this.haveAllLegends = false;
+    },
+    allSelected: function () {
+      for (const char of this.allCharacters) {
+        char.owned = !this.haveAllLegends;
+      }
+      this.haveAllLegends = !this.haveAllLegends;
     },
   },
 };
@@ -71,5 +97,17 @@ li {
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 5px;
+}
+
+button {
+  font-family: ApexLegend;
+  border: 1px solid black;
+  margin-right: 2%;
+  color: white;
+  background-color: #f97b2e;
+  font-size: 2rem;
+  box-shadow: 2px 2px 2px #696969;
+  text-decoration: none;
+  margin-bottom: 3%;
 }
 </style>
