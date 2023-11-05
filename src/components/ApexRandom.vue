@@ -13,15 +13,15 @@
         />
         <div class="action">
           <button
-            class="buttonRandom"
             v-if="haveAllLegends"
+            class="buttonRandom"
             @click="allSelected()"
           >
             Unselect all Legends
           </button>
           <button
-            class="buttonRandom"
             v-if="!haveAllLegends"
+            class="buttonRandom"
             @click="allSelected()"
           >
             Select all Legends
@@ -36,7 +36,7 @@
           <h1>Maps</h1>
           <p>Select your map :</p>
         </div>
-        <MapSelector @map-select="onMapSelect($event)" :maps="maps" />
+        <MapSelector :maps="maps" @map-select="onMapSelect($event)" />
         <div class="action">
           <button
             v-if="ownedCharacters.length"
@@ -57,8 +57,8 @@
       <ShowResults
         v-if="results"
         :results="results"
-        :on-close-click="onCloseClick"
         :ammo-type="allTypeAmmo"
+        @on-close-click="onCloseClick"
       />
     </div>
   </div>

@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <div class="mainHeader">Apex Legend</div>
+    <div class="mainHeader">
+      Apex Legend
+    </div>
     <ApexRandom />
   </div>
 </template>
@@ -31,9 +33,9 @@ export default {
   height: 100vh;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
   #app {
-    background: non;
+    background-image: none;
   }
 }
 </style>

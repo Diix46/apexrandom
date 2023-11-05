@@ -38,15 +38,15 @@
 
         <ul class="naid">
           <img class="ammo" src="img/Frag_Grenade.png" alt="Frag Grenade" />
-          <p>x {{ this.randNaid()[0] }}</p>
+          <p>x {{ randNaid()[0] }}</p>
           <img class="ammo" src="img/Arc_Star.png" alt="Arc Star" />
-          <p>x {{ this.randNaid()[1] }}</p>
+          <p>x {{ randNaid()[1] }}</p>
           <img
             class="ammo"
             src="img/Thermite_Grenade.png"
             alt="Thermite Grenade"
           />
-          <p>x {{ this.randNaid()[2] }}</p>
+          <p>x {{ randNaid()[2] }}</p>
         </ul>
 
         <div>
@@ -90,23 +90,21 @@
     <div :class="classSpawn">
       <canvas id="canvas" width="508" height="505" />
     </div>
-    <button class="closeButton" @click="onCloseClick">Close</button>
+    <button class="closeButton" @click="$emit('on-close-click')">Close</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ShowResults",
+  name: " ShowResults",
   props: {
     results: {
       type: Object,
-    },
-    onCloseClick: {
-      type: Function,
+      required: true,
     },
     ammoType: {
       type: Array,
-      require: true,
+      required: true,
     },
   },
   data() {

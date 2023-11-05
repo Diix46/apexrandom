@@ -1,13 +1,16 @@
 <template>
   <div class="character">
-    <div v-for="type in defaultTypes" :key="type.id">
+    <div
+      v-for="type in defaultTypes"
+      :key="type.id"
+    >
       <div class="title">
         <img
           :src="`./img/${type.img}`"
           height="25px"
           width="25px"
           alt="Default Legends"
-        />
+        >
         <p>{{ type.label }}</p>
       </div>
 
@@ -15,14 +18,14 @@
         <li
           v-for="char in triList(type.id)"
           :key="char.name"
-          @click="onImgClick(char)"
           :class="{ charNotSelected: !char.owned, charSelected: char.owned }"
+          @click="onImgClick(char)"
         >
           <img
             :src="`./img/characters/${char.img}`"
             class="legends"
             alt="${char.name}"
-          />
+          >
           <p>{{ char.name }}</p>
         </li>
       </ul>

@@ -6,7 +6,6 @@ module.exports = {
     "plugin:vue/base",
     "plugin:vue/essential",
     "plugin:vue/strongly-recommended",
-    "plugin:vue/recommended",
     'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
   ],
   rules: {
@@ -17,7 +16,6 @@ module.exports = {
         "ignores": []
       }],
     "indent": ["error", 2]
-    
     // 'vue/no-unused-vars': 'error'
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="affMap">
     <div
-      v-for="map in this.maps"
+      v-for="map in maps"
       :key="map.name"
       class="oneMap"
       :class="{
@@ -14,7 +14,7 @@
         width="100%"
         alt="${map.name}"
         @click="onMapSelect(map.name)"
-      />
+      >
       <p class="mapText">
         {{ map.name }}
       </p>
