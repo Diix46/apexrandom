@@ -2,7 +2,12 @@
   <div class="character">
     <div v-for="type in defaultTypes" :key="type.id">
       <div class="title">
-        <img :src="`./img/${type.img}`" height="25px" width="25px" />
+        <img
+          :src="`./img/${type.img}`"
+          height="25px"
+          width="25px"
+          alt="Default Legends"
+        />
         <p>{{ type.label }}</p>
       </div>
 
@@ -73,33 +78,33 @@ export default {
   display: none;
 }
 
-li:hover {
-  border: 3px solid #b93038;
-  box-shadow: 4px 4px 4px #696969;
-}
-
-.charNotSelected {
-  filter: grayscale(1);
-  -webkit-filter: grayscale(1);
-  background-color: #fa9759;
-}
-
-.charSelected {
-  border: 3px solid #b93038;
-  background-color: white;
-  box-shadow: 2px 2px 2px #696969;
-}
-
-li {
-  list-style-type: none;
-  border: 3px solid transparent;
-}
-
 .typeofLegends {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: minmax(100px, auto);
   gap: 3px;
+}
+
+.typeofLegends li {
+  list-style-type: none;
+  border: 3px solid transparent;
+}
+
+.typeofLegends li:hover {
+  border: 3px solid #b93038;
+  box-shadow: 4px 4px 4px #696969;
+}
+
+.typeofLegends .charSelected {
+  border: 3px solid #b93038;
+  background-color: white;
+  box-shadow: 2px 2px 2px #696969;
+}
+
+.typeofLegends .charNotSelected {
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+  background-color: #fa9759;
 }
 
 .title {

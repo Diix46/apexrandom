@@ -58,6 +58,7 @@
         v-if="results"
         :results="results"
         :on-close-click="onCloseClick"
+        :ammo-type="allTypeAmmo"
       />
     </div>
   </div>
@@ -85,8 +86,9 @@ export default {
       defaultTypes: characters.defaultTypes,
       defaultLegends: characters.defaultLegends,
       maps: maps.maps,
-      haveAllLegends: false,
       allWeapons: weapons.weapons,
+      allTypeAmmo: weapons.ammo,
+      haveAllLegends: false,
       selectedMap: null,
       selectedCharacter: null,
       selectedWeapons: null,

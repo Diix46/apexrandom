@@ -10,6 +10,45 @@
         <div class="charName">
           {{ results.character.name }}
         </div>
+        <div class="inventory">
+          <img
+            class="ammo"
+            :src="`./img/${ammoType[results.weapons[0].ammoType - 1].img}`"
+            alt="Ammo 1"
+          />
+          <img
+            class="ammo"
+            :src="`./img/${ammoType[results.weapons[1].ammoType - 1].img}`"
+            alt="Ammo 2"
+          />
+          <div v-if="attachement === 0">
+            <img class="ammo" src="img/Heat_Shield.png" alt="Attachement" />
+          </div>
+          <div v-else-if="attachement === 1">
+            <img
+              class="ammo"
+              src="img/Mobile_Respawn_Beacon.png"
+              alt="Attachement"
+            />
+          </div>
+          <div v-else-if="attachement === 2">
+            <img class="ammo" src="img/Evac_Tower.png" alt="Attachement" />
+          </div>
+        </div>
+
+        <ul class="naid">
+          <img class="ammo" src="img/Frag_Grenade.png" alt="Frag Grenade" />
+          <p>x {{ this.randNaid()[0] }}</p>
+          <img class="ammo" src="img/Arc_Star.png" alt="Arc Star" />
+          <p>x {{ this.randNaid()[1] }}</p>
+          <img
+            class="ammo"
+            src="img/Thermite_Grenade.png"
+            alt="Thermite Grenade"
+          />
+          <p>x {{ this.randNaid()[2] }}</p>
+        </ul>
+
         <div>
           <img
             class="weaponsImg"
@@ -64,6 +103,10 @@ export default {
     },
     onCloseClick: {
       type: Function,
+    },
+    ammoType: {
+      type: Array,
+      require: true,
     },
   },
   data() {
@@ -168,6 +211,7 @@ export default {
       },
       spell: true,
       ultimate: true,
+      naidAllowed: [],
     };
   },
   computed: {
@@ -184,6 +228,10 @@ export default {
         return this.spawns.tabBM;
       }
       return null;
+    },
+
+    attachement: function () {
+      return Math.floor(Math.random() * 3);
     },
 
     classSpawn: function () {
@@ -241,6 +289,14 @@ export default {
       this.spell = rand === 1;
       this.ultimate = rand2 === 1;
     },
+
+    randNaid: function () {
+      return [
+        Math.floor(Math.random() * 5),
+        Math.floor(Math.random() * 5),
+        Math.floor(Math.random() * 5),
+      ];
+    },
   },
 };
 </script>
@@ -248,7 +304,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .charName {
-  margin-bottom: 50px;
   font-size: 3rem;
 }
 
@@ -268,7 +323,7 @@ export default {
 }
 
 .characterImg {
-  width: 200px;
+  width: 220px;
   border: 4px solid #b93038;
   box-shadow: 3px 3px 0 #696969;
 }
@@ -325,6 +380,20 @@ export default {
   background-size: contain;
   width: 100%;
   height: auto;
+}
+
+.ammo {
+  width: 40px;
+}
+
+.naid {
+  display: flex;
+  flex-direction: row;
+}
+
+.inventory {
+  display: flex;
+  flex-direction: row;
 }
 
 @media (max-width: 800px) {

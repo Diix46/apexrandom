@@ -26,9 +26,14 @@ export default {
 }
 
 #app {
-  background-image: url(/img/bg.jpg);
-  background-repeat: no-repeat;
+  background: url(/img/bg.jpg) no-repeat;
   background-size: 100%;
   height: 100vh;
+}
+
+@media (max-width: 800px) {
+  #app {
+    background: non;
+  }
 }
 </style>

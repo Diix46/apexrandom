@@ -1,149 +1,210 @@
 {
+  "ammo": [
+    {
+      "id": 1,
+      "name": "Energy",
+      "img": "Energy_Ammo.png"
+    },
+    {
+      "id": 2,
+      "name": "Heavy",
+      "img": "Heavy_Rounds.png"
+    },
+    {
+      "id": 3,
+      "name": "Light",
+      "img": "Light_Rounds.png"
+    },
+    {
+      "id": 4,
+      "name": "Shotgun",
+      "img": "Shotgun_Shells.png"
+    },
+    {
+      "id": 5,
+      "name": "Sniper",
+      "img": "Sniper_Ammo.png"
+    },
+    {
+      "id": 6,
+      "name": "Arrow",
+      "img": "Arrow.png"
+    }
+  ],
   "weapons": [
     {
       "name": "Havoc",
       "img": "Havoc_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
     {
       "name": "Flatline",
       "img": "Flatline_Icon.png",
+      "ammoType": 2,
       "isPackage": false
     },
     {
       "name": "G7 Scout",
       "img": "G7_Scout_Icon.png",
+      "ammoType": 3,
       "isPackage": false
     },
     {
       "name": "Hemlok",
       "img": "Hemlok_Icon.png",
+      "ammoType": 2,
       "isPackage": false
     },
     {
       "name": "R-301",
       "img": "R-301_Icon.png",
+      "ammoType": 3,
       "isPackage": false
     },
     {
       "name": "30-30 Repeater",
       "img": "30-30_Repeater_Icon.png",
+      "ammoType": 2,
       "isPackage": false
     },
     {
       "name": "Alternator",
       "img": "Alternator_Icon.png",
+      "ammoType": 3,
       "isPackage": false
     },
     {
       "name": "R-99",
       "img": "R-99_Icon.png",
+      "ammoType": 3,
       "isPackage": false
     },
     {
       "name": "Volt",
       "img": "Volt_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
     {
       "name": "Devotion",
       "img": "Devotion_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
     {
       "name": "Sptifire",
       "img": "Spitfire_Icon.png",
+      "ammoType": 2,
       "isPackage": false
     },
     {
       "name": "L-STAR",
       "img": "L-Star_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
     {
       "name": "Charge Rifle",
       "img": "Charge_Rifle_Icon.png",
+      "ammoType": 5,
       "isPackage": false
     },
     {
       "name": "Longbow",
       "img": "Longbow_Icon.png",
+      "ammoType": 5,
       "isPackage": false
     },
     {
       "name": "Sentinel",
       "img": "Sentinel_Icon.png",
+      "ammoType": 5,
       "isPackage": false
     },
     {
       "name": "TripleTake",
       "img": "Triple_Take_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
     {
       "name": "EVA-8",
       "img": "Eva-8_Icon.png",
+      "ammoType": 4,
       "isPackage": false
     },
     {
       "name": "Mastiff",
       "img": "Mastiff_Icon.png",
+      "ammoType": 4,
       "isPackage": false
     },
     {
       "name": "Mozambique",
       "img": "Mozambique_Icon.png",
+      "ammoType": 4,
       "isPackage": false
     },
     {
       "name": "RE-45",
       "img": "Re-45_Icon.png",
+      "ammoType": 3,
       "isPackage": false
     },
     {
       "name": "P2020",
       "img": "P2020_Icon.png",
+      "ammoType": 3,
       "isPackage": false
     },
     {
       "name": "Wingman",
       "img": "Wingman_Icon.png",
+      "ammoType": 5,
       "isPackage": true
     },
     {
       "name": "Nemesis",
       "img": "Nemesis_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
 
     {
       "name": "CAR",
       "img": "CAR_Icon.png",
+      "ammoType": 1,
       "isPackage": false
     },
     {
       "name": "Rampage",
       "img": "Rampage_Icon.png",
+      "ammoType": 2,
       "isPackage": false
     },
     {
       "name": "Peacekeeper",
       "img": "Peacekeeper_Icon.png",
+      "ammoType": 4,
       "isPackage": false
     },
     {
       "name": "Prowler",
       "img": "Prowler_Icon.png",
+      "ammoType": 2,
       "isPackage": true
     },
     {
       "name": "Bocek",
       "img": "Bocek_Icon.png",
+      "ammoType": 6,
       "isPackage": true
     },
     {
       "name": "Kraber",
       "img": "Kraber_Icon.png",
+      "ammoType": 5,
       "isPackage": true
     }
   ]
