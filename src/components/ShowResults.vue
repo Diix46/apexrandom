@@ -4,6 +4,7 @@
       <img
         class="characterImg"
         :src="`./img/characters/${results.character.img}`"
+        alt="${results.character.name}"
       />
       <div class="result">
         <div class="charName">
@@ -13,6 +14,7 @@
           <img
             class="weaponsImg"
             :src="`./img/weapons/${results.weapons[0].img}`"
+            alt="${results.weapons[0].name}"
           />
           {{ results.weapons[0].name }}
         </div>
@@ -20,27 +22,28 @@
           <img
             class="weaponsImg"
             :src="`./img/weapons/${results.weapons[1].img}`"
+            alt="${results.weapons[1].name}"
           />
           {{ results.weapons[1].name }}
         </div>
         <div class="abilities">
           <div v-if="results.abilities === 1">
-            <img src="./../../public/img/abilities.png" />
-            Abilités ok
+            <img src="./../../public/img/abilities.png" alt="Abilities" />
+            Abilities ok
           </div>
           <div v-else>
-            <img src="./../../public/img/abilities.png" />
-            Pas d'abilités
+            <img src="./../../public/img/abilities.png" alt="No Abilities" />
+            No abilities
           </div>
         </div>
         <div class="ultimate">
           <div v-if="results.ultimate === 1">
-            <img src="./../../public/img/ultimate.png" />
+            <img src="./../../public/img/ultimate.png" alt="Ultimate" />
             Ultimate ok
           </div>
           <div v-else>
-            <img src="./../../public/img/ultimate.png" />
-            Pas d'ultimate
+            <img src="./../../public/img/ultimate.png" alt="No Ultimate" />
+            No ultimate
           </div>
         </div>
       </div>
@@ -48,7 +51,7 @@
     <div :class="classSpawn">
       <canvas id="canvas" width="508" height="505" />
     </div>
-    <button class="closeButton" @click="onCloseClick">Fermer</button>
+    <button class="closeButton" @click="onCloseClick">Close</button>
   </div>
 </template>
 
@@ -63,7 +66,6 @@ export default {
       type: Function,
     },
   },
-
   data() {
     return {
       spawns: {
@@ -168,7 +170,6 @@ export default {
       ultimate: true,
     };
   },
-
   computed: {
     tabSpawn: function () {
       if (this.results.map === "King's Canyon") {
@@ -200,14 +201,12 @@ export default {
       return null;
     },
   },
-
   mounted() {
     this.drawSpawn();
   },
   updated() {
     this.drawSpawn();
   },
-
   methods: {
     drawSpawn: function () {
       const canvas = document.getElementById("canvas");
@@ -237,18 +236,10 @@ export default {
     },
 
     abilitiesAllowed: function () {
-      var rand = Math.floor(Math.random() * 3);
-      var rand2 = Math.floor(Math.random() * 3);
-      if (rand == 1) {
-        this.spell = true;
-      } else {
-        this.spell = false;
-      }
-      if (rand2 == 1) {
-        this.ultimate = true;
-      } else {
-        this.ultimate = false;
-      }
+      const rand = Math.floor(Math.random() * 3);
+      const rand2 = Math.floor(Math.random() * 3);
+      this.spell = rand === 1;
+      this.ultimate = rand2 === 1;
     },
   },
 };
@@ -258,6 +249,7 @@ export default {
 <style scoped>
 .charName {
   margin-bottom: 50px;
+  font-size: 3rem;
 }
 
 .closeButton {
@@ -265,16 +257,20 @@ export default {
   width: 100%;
   margin-bottom: -10px;
   margin-top: 10px;
-  font-family: ApexLegend;
+  font-family: ApexLegend, serif;
   color: black;
   border: 1px solid black;
   background-color: #b93038;
 }
 
+.closeButton:hover {
+  box-shadow: 4px 4px 4px #696969;
+}
+
 .characterImg {
   width: 200px;
   border: 4px solid #b93038;
-  box-shadow: 6px 6px 0px #f97b2e;
+  box-shadow: 3px 3px 0 #696969;
 }
 
 .weaponsImg {
@@ -291,7 +287,7 @@ export default {
 .result {
   flex-direction: column;
   justify-content: center;
-  font-family: ApexLegend;
+  font-family: ApexLegend, serif;
   font-size: 2rem;
   margin-left: 3%;
 }

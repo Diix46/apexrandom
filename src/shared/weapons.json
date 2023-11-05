@@ -1,0 +1,150 @@
+{
+  "weapons": [
+    {
+      "name": "Havoc",
+      "img": "Havoc_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Flatline",
+      "img": "Flatline_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "G7 Scout",
+      "img": "G7_Scout_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Hemlok",
+      "img": "Hemlok_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "R-301",
+      "img": "R-301_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "30-30 Repeater",
+      "img": "30-30_Repeater_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Alternator",
+      "img": "Alternator_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "R-99",
+      "img": "R-99_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Volt",
+      "img": "Volt_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Devotion",
+      "img": "Devotion_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Sptifire",
+      "img": "Spitfire_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "L-STAR",
+      "img": "L-Star_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Charge Rifle",
+      "img": "Charge_Rifle_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Longbow",
+      "img": "Longbow_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Sentinel",
+      "img": "Sentinel_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "TripleTake",
+      "img": "Triple_Take_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "EVA-8",
+      "img": "Eva-8_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Mastiff",
+      "img": "Mastiff_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Mozambique",
+      "img": "Mozambique_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "RE-45",
+      "img": "Re-45_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "P2020",
+      "img": "P2020_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Wingman",
+      "img": "Wingman_Icon.png",
+      "isPackage": true
+    },
+    {
+      "name": "Nemesis",
+      "img": "Nemesis_Icon.png",
+      "isPackage": false
+    },
+
+    {
+      "name": "CAR",
+      "img": "CAR_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Rampage",
+      "img": "Rampage_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Peacekeeper",
+      "img": "Peacekeeper_Icon.png",
+      "isPackage": false
+    },
+    {
+      "name": "Prowler",
+      "img": "Prowler_Icon.png",
+      "isPackage": true
+    },
+    {
+      "name": "Bocek",
+      "img": "Bocek_Icon.png",
+      "isPackage": true
+    },
+    {
+      "name": "Kraber",
+      "img": "Kraber_Icon.png",
+      "isPackage": true
+    }
+  ]
+}

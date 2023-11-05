@@ -10,8 +10,7 @@ module.exports = {
     'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
   ],
   rules: {
-    // override/add rules settings here, such as:
-    
+    // override/add rules settings here, such as
       "vue/script-indent": ["error", 2, {
         "baseIndent": 0,
         "switchCase": 0,

@@ -1,13 +1,18 @@
 <template>
   <div class="affMap">
-    <div v-for="map in maps" :key="map.name" class="oneMap">
+    <div
+      v-for="map in maps"
+      :key="map.name"
+      class="oneMap"
+      :class="{
+        mapNotSelected: !(checkedMap === map.name),
+        mapSelected: checkedMap === map.name,
+      }"
+    >
       <img
         :src="`./img/maps/${map.img}.jpg`"
-        :class="{
-          mapNotSelected: !(checkedMap === map.name),
-          mapSelected: checkedMap === map.name,
-        }"
-        width="98%"
+        width="100%"
+        alt="${map.name}"
         @click="onMapSelect(map.name)"
       />
       <p class="mapText">
@@ -55,13 +60,21 @@ export default {
   flex-direction: column;
   margin-top: 10px;
   text-align: center;
-  font-family: ApexLegend;
-  font-size: 2rem;
+  font-family: ApexLegend, serif;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  font-size: 2.5rem;
+}
+
+.oneMap:hover {
+  border: 3px solid #b93038;
+  box-shadow: 4px 4px 4px #696969;
 }
 
 .oneMap {
   display: flex;
   position: relative;
+  border: 3px solid transparent;
   flex-direction: column;
   margin-bottom: 0.5rem;
 }
@@ -79,8 +92,8 @@ export default {
 }
 
 .mapSelected {
-  border: 3px solid black;
-  box-shadow: 4px 4px 0px #696969;
+  border-color: #b93038;
+  box-shadow: 4px 4px 0 #696969;
 }
 
 @media (max-width: 800px) {

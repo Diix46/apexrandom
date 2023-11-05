@@ -1,36 +1,62 @@
 <template>
   <div class="character">
-    <li
-      v-for="char in allCharacters"
-      :key="char.name"
-      @click="onImgClick(char)"
-    >
-      <div :class="{ notowned: !char.owned, owned: char.owned }">
-        <img
-          :src="`./img/characters/${char.img}`"
-          height="100px"
-          width="100px"
-        />
-        <p>{{ char.name }}</p>
+    <div v-for="type in defaultTypes" :key="type.id">
+      <div class="title">
+        <img :src="`./img/${type.img}`" height="25px" width="25px" />
+        <p>{{ type.label }}</p>
       </div>
-    </li>
-    <button @click="allSelected()" v-if="this.haveAllLegends">
-      Unselect all Legends
-    </button>
-    <button @click="allSelected()" v-if="!this.haveAllLegends">
-      Select all Legends
-    </button>
-    <button @click="restoreDefault()">Restore Default</button>
+
+      <ul class="typeofLegends">
+        <li
+          v-for="char in triList(type.id)"
+          :key="char.name"
+          @click="onImgClick(char)"
+          :class="{ charNotSelected: !char.owned, charSelected: char.owned }"
+        >
+          <img
+            :src="`./img/characters/${char.img}`"
+            class="legends"
+            alt="${char.name}"
+          />
+          <p>{{ char.name }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="action">
+      <button
+        class="buttonLegends"
+        v-if="haveAllLegends"
+        @click="allSelected()"
+      >
+        Unselect all Legends
+      </button>
+      <button
+        class="buttonLegends"
+        v-if="!haveAllLegends"
+        @click="allSelected()"
+      >
+        Select all Legends
+      </button>
+      <button class="buttonLegends" @click="restoreDefault()">
+        Restore Default
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import { defaultLegends } from "./../shared/characters";
-
 export default {
   name: "CharacterSelector",
   props: {
     allCharacters: {
+      type: Array,
+      required: true,
+    },
+    defaultLegends: {
+      type: Array,
+      required: true,
+    },
+    defaultTypes: {
       type: Array,
       required: true,
     },
@@ -47,7 +73,7 @@ export default {
     },
     restoreDefault: function () {
       for (const char of this.allCharacters) {
-        char.owned = defaultLegends.includes(char.name);
+        char.owned = this.defaultLegends.includes(char.name);
       }
       this.haveAllLegends = false;
     },
@@ -57,6 +83,9 @@ export default {
       }
       this.haveAllLegends = !this.haveAllLegends;
     },
+    triList: function (id) {
+      return this.allCharacters.filter((w) => w.type === id);
+    },
   },
 };
 </script>
@@ -64,43 +93,39 @@ export default {
 <style>
 .character {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
-  justify-content: center;
-  font-family: ApexLegend;
+  font-family: ApexLegend, serif;
   text-align: center;
   font-size: 1.5rem;
 }
 
 li:hover {
-  border: 2px solid #b93038;
+  border: 3px solid #b93038;
   box-shadow: 4px 4px 4px #696969;
-  margin-left: 2px;
-  margin-right: 2px;
-  margin-bottom: 1px;
 }
 
-.notowned {
+.charNotSelected {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
   background-color: #fa9759;
-  border: 4px solid white;
 }
 
-.owned {
-  border: 4px solid #b93038;
+.charSelected {
+  border: 3px solid #b93038;
+  background-color: white;
   box-shadow: 2px 2px 2px #696969;
 }
 
 li {
   list-style-type: none;
-  margin-left: 4px;
-  margin-right: 4px;
-  margin-bottom: 5px;
+  border: 3px solid transparent;
 }
 
-button {
-  font-family: ApexLegend;
+.buttonLegends {
+  flex: 1;
+  font-family: ApexLegend, serif;
   border: 1px solid black;
   margin-right: 2%;
   color: white;
@@ -109,5 +134,40 @@ button {
   box-shadow: 2px 2px 2px #696969;
   text-decoration: none;
   margin-bottom: 3%;
+}
+
+.buttonLegends:hover {
+  box-shadow: 4px 4px 4px #696969;
+}
+
+.typeofLegends {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 3px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 7px;
+}
+
+.action {
+  display: flex;
+  flex-direction: row;
+}
+
+.legends {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .typeofLegends {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 3px;
+  }
 }
 </style>

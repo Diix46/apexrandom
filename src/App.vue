@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <div class="mainHeader">
-      Apex Legend
-    </div>
+    <div class="mainHeader">Apex Legend</div>
     <ApexRandom />
   </div>
 </template>
 
 <script>
 import ApexRandom from "./components/ApexRandom.vue";
+
 export default {
   name: "App",
   components: {
@@ -17,11 +16,19 @@ export default {
 };
 </script>
 <style scoped>
-.mainHeader{
+.mainHeader {
   display: flex;
   justify-content: center;
   height: 2rem;
-  font-family: ApexLegend;
+  font-family: ApexLegend, serif;
+  color: white;
   font-size: 2rem;
+}
+
+#app {
+  background-image: url(/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100vh;
 }
 </style>

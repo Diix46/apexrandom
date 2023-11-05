@@ -1,0 +1,191 @@
+{
+  "defaultLegends": [
+    "Bangalore",
+    "Bloodhound",
+    "Gibraltar",
+    "Lifeline",
+    "Pathfinder",
+    "Wraith"
+  ],
+
+  "defaultTypes": [
+    {
+      "id": 1,
+      "label": "Assault",
+      "img": "Assault_Class.png"
+    },
+    {
+      "id": 2,
+      "label": "Skirmisher",
+      "img": "Skirmisher_Class.png"
+    },
+    {
+      "id": 3,
+      "label": "Recon",
+      "img": "Recon_Class.png"
+    },
+    {
+      "id": 4,
+      "label": "Support",
+      "img": "Support_Class.png"
+    },
+    {
+      "id": 5,
+      "label": "Controller",
+      "img": "Controller_Class.png"
+    }
+  ],
+  "allCharacters": [
+    {
+      "name": "Ash",
+      "img": "ash.png",
+      "owned": false,
+      "type": 1
+    },
+    {
+      "name": "Ballistic",
+      "img": "ballistic.png",
+      "owned": false,
+      "type": 1
+    },
+    {
+      "name": "Bangalore",
+      "img": "bangalore.png",
+      "owned": true,
+      "type": 1
+    },
+    {
+      "name": "Bloodhound",
+      "img": "bloodhound.png",
+      "owned": true,
+      "type": 3
+    },
+    {
+      "name": "Caustic",
+      "img": "caustic.png",
+      "owned": false,
+      "type": 5
+    },
+    {
+      "name": "Catalyst",
+      "img": "catalyst.png",
+      "owned": false,
+      "type": 5
+    },
+    {
+      "name": "Conduit",
+      "img": "conduit.png",
+      "owned": false,
+      "type": 4
+    },
+    {
+      "name": "Crypto",
+      "img": "crypto.png",
+      "owned": false,
+      "type": 3
+    },
+    {
+      "name": "Fuse",
+      "img": "fuse.png",
+      "owned": false,
+      "type": 1
+    },
+    {
+      "name": "Gibraltar",
+      "img": "gibraltar.png",
+      "owned": true,
+      "type": 4
+    },
+    {
+      "name": "Horizon",
+      "img": "horizon.png",
+      "owned": false,
+      "type": 2
+    },
+    {
+      "name": "Lifeline",
+      "img": "lifeline.png",
+      "owned": true,
+      "type": 4
+    },
+    {
+      "name": "Loba",
+      "img": "loba.png",
+      "owned": false,
+      "type": 4
+    },
+    {
+      "name": "Mirage",
+      "img": "mirage.png",
+      "owned": false,
+      "type": 4
+    },
+    {
+      "name": "Newcastle",
+      "img": "newcastle.png",
+      "owned": false,
+      "type": 4
+    },
+
+    {
+      "name": "Mad Maggie",
+      "img": "mad_maggie.png",
+      "owned": false,
+      "type": 1
+    },
+    {
+      "name": "Octane",
+      "img": "octane.png",
+      "owned": false,
+      "type": 2
+    },
+    {
+      "name": "Pathfinder",
+      "img": "pathfinder.png",
+      "owned": true,
+      "type": 2
+    },
+    {
+      "name": "Rampart",
+      "img": "rampart.png",
+      "owned": false,
+      "type": 5
+    },
+    {
+      "name": "Revenant",
+      "img": "revenant.png",
+      "owned": false,
+      "type": 2
+    },
+    {
+      "name": "Seer",
+      "img": "seer.png",
+      "owned": false,
+      "type": 3
+    },
+    {
+      "name": "Valkyrie",
+      "img": "valkyrie.png",
+      "owned": false,
+      "type": 2
+    },
+    {
+      "name": "Vantage",
+      "img": "vantage.png",
+      "owned": false,
+      "type": 3
+    },
+    {
+      "name": "Wattson",
+      "img": "wattson.png",
+      "owned": false,
+      "type": 5
+    },
+    {
+      "name": "Wraith",
+      "img": "wraith.png",
+      "owned": true,
+      "type": 2
+    }
+  ]
+}

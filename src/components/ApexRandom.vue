@@ -1,23 +1,21 @@
 <template>
   <div class="box">
     <div class="container">
-      <div
-        class="charSelector"
-        style="flex: 1"
-      >
+      <div class="charSelector">
         <div class="header">
-          <h1>Vos légendes</h1>
-          <p>Veuillez selectionner les légendes que vous possédez :</p>
+          <h1>Your Legends</h1>
+          <p>Select your legends :</p>
         </div>
-        <CharacterSelector :all-characters="allCharacters" />
+        <CharacterSelector
+          :all-characters="allCharacters"
+          :default-legends="defaultLegends"
+          :default-types="defaultTypes"
+        />
       </div>
-      <div
-        class="mapSelector"
-        style="flex: 1"
-      >
+      <div class="mapSelector">
         <div class="header">
-          <h1>La map</h1>
-          <p>Veuillez selectionner la map en cours :</p>
+          <h1>Maps</h1>
+          <p>Select your map :</p>
         </div>
         <MapSelector @map-select="onMapSelect($event)" />
         <button
@@ -30,17 +28,10 @@
         </button>
       </div>
     </div>
-    <div
-      v-if="results"
-      class="overlay"
-      @click="onCloseClick()"
-    />
-    <div
-      v-if="results"
-      class="showResults"
-    >
+    <div v-if="results" class="overlay" @click="onCloseClick()" />
+    <div v-if="results" class="showResults">
       <div class="header">
-        <h1>Voici le résultat</h1>
+        <h1>Result</h1>
       </div>
       <ShowResults
         v-if="results"
@@ -56,8 +47,8 @@ import ShowResults from "./ShowResults.vue";
 import CharacterSelector from "./CharacterSelector.vue";
 import MapSelector from "./MapSelector.vue";
 
-import characters from "./../shared/characters";
-import weapons from "./../shared/weapons";
+import characters from "./../shared/characters.json";
+import weapons from "./../shared/weapons.json";
 
 export default {
   name: "ApexRandom",
@@ -68,8 +59,10 @@ export default {
   },
   data() {
     return {
-      allCharacters: characters,
-      allWeapons: weapons,
+      allCharacters: characters.allCharacters,
+      defaultTypes: characters.defaultTypes,
+      defaultLegends: characters.defaultLegends,
+      allWeapons: weapons.weapons,
       selectedMap: null,
       selectedCharacter: null,
       selectedWeapons: null,
@@ -80,6 +73,9 @@ export default {
   computed: {
     ownedCharacters() {
       return this.allCharacters.filter((c) => c.owned);
+    },
+    weaponNotInPackage() {
+      return this.allWeapons.filter((w) => !w.isPackage);
     },
     results() {
       if (!this.selectedCharacter) {
@@ -118,17 +114,19 @@ export default {
 
     selectWeapons: function () {
       const firstWeaponIndex = Math.floor(
-        Math.random() * this.allWeapons.length
+        Math.random() * this.weaponNotInPackage.length
       );
       let secondWeaponIndex = Math.floor(
-        Math.random() * this.allWeapons.length
+        Math.random() * this.weaponNotInPackage.length
       );
       while (firstWeaponIndex === secondWeaponIndex) {
-        secondWeaponIndex = Math.floor(Math.random() * this.allWeapons.length);
+        secondWeaponIndex = Math.floor(
+          Math.random() * this.weaponNotInPackage.length
+        );
       }
       return [
-        this.allWeapons[firstWeaponIndex],
-        this.allWeapons[secondWeaponIndex],
+        this.weaponNotInPackage[firstWeaponIndex],
+        this.weaponNotInPackage[secondWeaponIndex],
       ];
     },
 
@@ -150,19 +148,22 @@ export default {
   flex-direction: row;
   display: flex;
   width: 1200px;
-  display: flex;
-  flex-direction: row;
   justify-content: center;
+  gap: 1%;
 }
 
 .charSelector {
-  margin-left: 0.5%;
-  margin-right: 0.5%;
+  flex: 1;
+  background-color: white;
+  border: 2px solid black;
+  padding: 1%;
 }
 
 .mapSelector {
-  margin-left: 0.25%;
-  margin-right: 0.25%;
+  flex: 1;
+  background-color: white;
+  border: 2px solid black;
+  padding: 1%;
 }
 
 .showResults {
@@ -170,6 +171,7 @@ export default {
   top: 3%;
   background: #f1f1f1;
   padding: 20px;
+  border: 1px solid black;
 }
 
 .overlay {
@@ -183,29 +185,28 @@ export default {
 
 .header {
   background-image: url(/img/texture.jpg);
-  height: 20%;
+  height: 10%;
   text-align: center;
-  font-family: ApexLegend;
+  font-family: ApexLegend, serif;
   font-size: 1.5rem;
   color: white;
 }
 
 h1 {
   font-size: 4rem;
-  font-family: ApexLegend;
+  font-family: ApexLegend, serif;
   color: black;
 }
 
 .buttonRandom {
-  font-family: ApexLegend;
-  border: 1px solid black;
+  flex: 1;
+  font-family: ApexLegend, serif;
   color: white;
   background-color: #f97b2e;
-  font-size: 4rem;
+  font-size: 2rem;
   box-shadow: 2px 2px 2px #696969;
   text-decoration: none;
-
-  margin-bottom: 3%;
+  width: 100%;
 }
 
 .buttonRandom:hover {
