@@ -1,7 +1,7 @@
 <template>
   <div class="affMap">
     <div
-      v-for="map in maps"
+      v-for="map in this.maps"
       :key="map.name"
       class="oneMap"
       :class="{
@@ -25,14 +25,14 @@
 <script>
 export default {
   name: "MapSelector",
+  props: {
+    maps: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
-      maps: [
-        { name: "King's Canyon", img: "KC" },
-        { name: "Olympus", img: "Olympus" },
-        { name: "Storm Point", img: "SP" },
-        { name: "Broken Moon", img: "BM" },
-      ],
       checkedMap: "King's Canyon",
     };
   },
@@ -57,6 +57,7 @@ export default {
 <style>
 .affMap {
   display: flex;
+  flex: 1;
   flex-direction: column;
   margin-top: 10px;
   text-align: center;
@@ -64,6 +65,13 @@ export default {
   color: white;
   -webkit-text-stroke: 1px black;
   font-size: 2.5rem;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.affMap::-webkit-scrollbar {
+  display: none;
 }
 
 .oneMap:hover {

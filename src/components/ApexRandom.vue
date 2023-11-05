@@ -11,21 +11,42 @@
           :default-legends="defaultLegends"
           :default-types="defaultTypes"
         />
+        <div class="action">
+          <button
+            class="buttonRandom"
+            v-if="haveAllLegends"
+            @click="allSelected()"
+          >
+            Unselect all Legends
+          </button>
+          <button
+            class="buttonRandom"
+            v-if="!haveAllLegends"
+            @click="allSelected()"
+          >
+            Select all Legends
+          </button>
+          <button class="buttonRandom" @click="restoreDefault()">
+            Restore Default
+          </button>
+        </div>
       </div>
       <div class="mapSelector">
         <div class="header">
           <h1>Maps</h1>
           <p>Select your map :</p>
         </div>
-        <MapSelector @map-select="onMapSelect($event)" />
-        <button
-          v-if="ownedCharacters.length"
-          class="buttonRandom"
-          :disabled="!ownedCharacters.length"
-          @click="onRandomClick()"
-        >
-          Random
-        </button>
+        <MapSelector @map-select="onMapSelect($event)" :maps="maps" />
+        <div class="action">
+          <button
+            v-if="ownedCharacters.length"
+            class="buttonRandom"
+            :disabled="!ownedCharacters.length"
+            @click="onRandomClick()"
+          >
+            Random
+          </button>
+        </div>
       </div>
     </div>
     <div v-if="results" class="overlay" @click="onCloseClick()" />
@@ -49,6 +70,7 @@ import MapSelector from "./MapSelector.vue";
 
 import characters from "./../shared/characters.json";
 import weapons from "./../shared/weapons.json";
+import maps from "./../shared/maps.json";
 
 export default {
   name: "ApexRandom",
@@ -62,6 +84,8 @@ export default {
       allCharacters: characters.allCharacters,
       defaultTypes: characters.defaultTypes,
       defaultLegends: characters.defaultLegends,
+      maps: maps.maps,
+      haveAllLegends: false,
       allWeapons: weapons.weapons,
       selectedMap: null,
       selectedCharacter: null,
@@ -92,6 +116,18 @@ export default {
   },
 
   methods: {
+    restoreDefault: function () {
+      for (const char of this.allCharacters) {
+        char.owned = this.defaultLegends.includes(char.name);
+      }
+      this.haveAllLegends = false;
+    },
+    allSelected: function () {
+      for (const char of this.allCharacters) {
+        char.owned = !this.haveAllLegends;
+      }
+      this.haveAllLegends = !this.haveAllLegends;
+    },
     onCloseClick: function () {
       this.selectedCharacter = null;
       this.selectedWeapons = null;
@@ -145,25 +181,37 @@ export default {
 }
 
 .container {
-  flex-direction: row;
   display: flex;
-  width: 1200px;
+  flex-direction: row;
+  width: 100vh;
   justify-content: center;
   gap: 1%;
 }
 
 .charSelector {
+  display: flex;
   flex: 1;
+  flex-direction: column;
   background-color: white;
   border: 2px solid black;
   padding: 1%;
+  height: 91vh;
+}
+
+.action {
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
 }
 
 .mapSelector {
+  display: flex;
   flex: 1;
+  flex-direction: column;
   background-color: white;
   border: 2px solid black;
   padding: 1%;
+  height: 91vh;
 }
 
 .showResults {
@@ -185,7 +233,7 @@ export default {
 
 .header {
   background-image: url(/img/texture.jpg);
-  height: 10%;
+  height: 100px;
   text-align: center;
   font-family: ApexLegend, serif;
   font-size: 1.5rem;

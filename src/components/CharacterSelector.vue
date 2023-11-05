@@ -22,25 +22,6 @@
         </li>
       </ul>
     </div>
-    <div class="action">
-      <button
-        class="buttonLegends"
-        v-if="haveAllLegends"
-        @click="allSelected()"
-      >
-        Unselect all Legends
-      </button>
-      <button
-        class="buttonLegends"
-        v-if="!haveAllLegends"
-        @click="allSelected()"
-      >
-        Select all Legends
-      </button>
-      <button class="buttonLegends" @click="restoreDefault()">
-        Restore Default
-      </button>
-    </div>
   </div>
 </template>
 
@@ -61,27 +42,10 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      haveAllLegends: false,
-    };
-  },
 
   methods: {
     onImgClick: function (char) {
       char.owned = !char.owned;
-    },
-    restoreDefault: function () {
-      for (const char of this.allCharacters) {
-        char.owned = this.defaultLegends.includes(char.name);
-      }
-      this.haveAllLegends = false;
-    },
-    allSelected: function () {
-      for (const char of this.allCharacters) {
-        char.owned = !this.haveAllLegends;
-      }
-      this.haveAllLegends = !this.haveAllLegends;
     },
     triList: function (id) {
       return this.allCharacters.filter((w) => w.type === id);
@@ -93,12 +57,20 @@ export default {
 <style>
 .character {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
   font-family: ApexLegend, serif;
   text-align: center;
   font-size: 1.5rem;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.character::-webkit-scrollbar {
+  display: none;
 }
 
 li:hover {
@@ -123,23 +95,6 @@ li {
   border: 3px solid transparent;
 }
 
-.buttonLegends {
-  flex: 1;
-  font-family: ApexLegend, serif;
-  border: 1px solid black;
-  margin-right: 2%;
-  color: white;
-  background-color: #f97b2e;
-  font-size: 2rem;
-  box-shadow: 2px 2px 2px #696969;
-  text-decoration: none;
-  margin-bottom: 3%;
-}
-
-.buttonLegends:hover {
-  box-shadow: 4px 4px 4px #696969;
-}
-
 .typeofLegends {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -151,11 +106,6 @@ li {
   display: flex;
   flex-direction: row;
   margin-bottom: 7px;
-}
-
-.action {
-  display: flex;
-  flex-direction: row;
 }
 
 .legends {
