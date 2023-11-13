@@ -6,24 +6,13 @@
           <h1>Your Legends</h1>
           <p>Select your legends :</p>
         </div>
-        <CharacterSelector
-          :all-characters="allCharacters"
-          :default-legends="defaultLegends"
-          :default-types="defaultTypes"
-        />
+        <CharacterSelector :all-characters="allCharacters" :default-legends="defaultLegends"
+          :default-types="defaultTypes" />
         <div class="action">
-          <button
-            v-if="haveAllLegends"
-            class="buttonRandom"
-            @click="allSelected()"
-          >
+          <button v-if="haveAllLegends" class="buttonRandom" @click="allSelected()">
             Unselect all Legends
           </button>
-          <button
-            v-if="!haveAllLegends"
-            class="buttonRandom"
-            @click="allSelected()"
-          >
+          <button v-if="!haveAllLegends" class="buttonRandom" @click="allSelected()">
             Select all Legends
           </button>
           <button class="buttonRandom" @click="restoreDefault()">
@@ -38,12 +27,8 @@
         </div>
         <MapSelector :maps="maps" @map-select="onMapSelect($event)" />
         <div class="action">
-          <button
-            v-if="ownedCharacters.length"
-            class="buttonRandom"
-            :disabled="!ownedCharacters.length"
-            @click="onRandomClick()"
-          >
+          <button v-if="ownedCharacters.length" class="buttonRandom" :disabled="!ownedCharacters.length"
+            @click="onRandomClick()">
             Random
           </button>
         </div>
@@ -54,12 +39,7 @@
       <div class="header">
         <h1>Result</h1>
       </div>
-      <ShowResults
-        v-if="results"
-        :results="results"
-        :ammo-type="allTypeAmmo"
-        @on-close-click="onCloseClick"
-      />
+      <ShowResults v-if="results" :results="results" :ammo-type="allTypeAmmo" @on-close-click="onCloseClick" />
     </div>
   </div>
 </template>
@@ -257,6 +237,7 @@ h1 {
   box-shadow: 2px 2px 2px #696969;
   text-decoration: none;
   width: 100%;
+  cursor: pointer;
 }
 
 .buttonRandom:hover {
