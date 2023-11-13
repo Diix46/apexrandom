@@ -1,20 +1,10 @@
 <template>
   <div class="affMap">
-    <div
-      v-for="map in maps"
-      :key="map.name"
-      class="oneMap"
-      :class="{
-        mapNotSelected: !(checkedMap === map.name),
-        mapSelected: checkedMap === map.name,
-      }"
-    >
-      <img
-        :src="`./img/maps/${map.img}.jpg`"
-        width="100%"
-        alt="${map.name}"
-        @click="onMapSelect(map.name)"
-      >
+    <div v-for="map in maps" :key="map.name" class="oneMap" :class="{
+      mapNotSelected: !(checkedMap === map.name),
+      mapSelected: checkedMap === map.name,
+    }">
+      <img :src="`./img/maps/${map.img}.jpg`" width="100%" alt="${map.name}" @click="onMapSelect(map.name)">
       <p class="mapText">
         {{ map.name }}
       </p>
@@ -77,6 +67,7 @@ export default {
 .oneMap:hover {
   border: 3px solid #b93038;
   box-shadow: 4px 4px 4px #696969;
+  cursor: pointer;
 }
 
 .oneMap {

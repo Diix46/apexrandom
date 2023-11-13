@@ -1,31 +1,15 @@
 <template>
   <div class="character">
-    <div
-      v-for="type in defaultTypes"
-      :key="type.id"
-    >
+    <div v-for="type in defaultTypes" :key="type.id">
       <div class="title">
-        <img
-          :src="`./img/${type.img}`"
-          height="25px"
-          width="25px"
-          alt="Default Legends"
-        >
+        <img :src="`./img/${type.img}`" height="25px" width="25px" alt="Default Legends">
         <p>{{ type.label }}</p>
       </div>
 
       <ul class="typeofLegends">
-        <li
-          v-for="char in triList(type.id)"
-          :key="char.name"
-          :class="{ charNotSelected: !char.owned, charSelected: char.owned }"
-          @click="onImgClick(char)"
-        >
-          <img
-            :src="`./img/characters/${char.img}`"
-            class="legends"
-            alt="${char.name}"
-          >
+        <li v-for="char in triList(type.id)" :key="char.name"
+          :class="{ charNotSelected: !char.owned, charSelected: char.owned }" @click="onImgClick(char)">
+          <img :src="`./img/characters/${char.img}`" class="legends" alt="${char.name}">
           <p>{{ char.name }}</p>
         </li>
       </ul>
@@ -96,6 +80,7 @@ export default {
 .typeofLegends li:hover {
   border: 3px solid #b93038;
   box-shadow: 4px 4px 4px #696969;
+  cursor: pointer;
 }
 
 .typeofLegends .charSelected {
